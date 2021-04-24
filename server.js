@@ -1,13 +1,44 @@
 const express = require('express');
+const Handlebars = require('handlebars');
 const exphbs = require('express-handlebars');
+const { allowInsecurePrototypeAccess } = require('@handlebars/allow-prototype-access')
+const bodyParser = require('body-parser');
+const mongoose = require('mongoose');
+
+// Load models
+const Message = require('./models/message');
+
 const app = express();
+
+// Load keys file
+const Keys = require('./config/keys');
+
+// Use body-parser middleware
+app.use(bodyParser.urlencoded({extended:false}));
+app.use(bodyParser.json());
+
+// Connect to mongodb
+mongoose.connect(Keys.MongoDB,
+  {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useCreateIndex: true,
+    useFindAndModify: false
+  }).then(() => {
+  console.log('Server is connected to MongoDB.');
+}).catch((err) => {
+  console.log(err);
+});
 
 // Environment variable for port
 const port = process.env.PORT || 3000;
 
 // Set up view engine
 
-app.engine('handlebars', exphbs({defaultLayout:'main'}));
+app.engine('handlebars', exphbs({
+  defaultLayout:'main',
+  handlebars: allowInsecurePrototypeAccess(Handlebars)
+}));
 app.set('view engine', 'handlebars');
 
 // Set up bootstrap
@@ -33,6 +64,34 @@ app.get('/about', (req, res) => {
 app.get('/contact', (req, res) => {
   res.render('contact', {
     "title": "Contact"
+  });
+});
+
+app.post('/contactUs', (req, res) => {
+  console.log(req.body);
+  const newMessage = {
+    fullName: req.body.fullName,
+    email: req.body.email,
+    message: req.body.message,
+    date: new Date()
+  }
+  new Message(newMessage).save((err, message) => {
+    if(err){
+      throw err;
+    } else {
+      Message.find({}).then((messages) => {
+        if(messages){
+          res.render('newmessage', {
+            title: "Sent",
+            messages: messages
+          });
+        } else {
+          res.render('nomessage', {
+            title: "Not found"
+          });
+        }
+      });
+    }
   });
 });
 
