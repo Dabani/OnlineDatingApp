@@ -5,6 +5,8 @@ const { allowInsecurePrototypeAccess } = require('@handlebars/allow-prototype-ac
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const passport = require('passport');
+const cookieParser = require('cookie-parser');
+const session = require('express-session');
 
 // Load models
 const Message = require('./models/message');
@@ -18,6 +20,16 @@ const Keys = require('./config/keys');
 // Use body-parser middleware
 app.use(bodyParser.urlencoded({extended:false}));
 app.use(bodyParser.json());
+
+// Configuration for authentication
+app.use(cookieParser());
+app.use(session({
+  secret: 'mySecret',
+  resave: true,
+  saveUninitialized: true
+}));
+app.use(passport.initialize());
+app.use(passport.session());
 
 // Connect to mongodb
 mongoose.connect(Keys.MongoDB,
