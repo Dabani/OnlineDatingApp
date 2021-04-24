@@ -4,9 +4,11 @@ const exphbs = require('express-handlebars');
 const { allowInsecurePrototypeAccess } = require('@handlebars/allow-prototype-access')
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
+const passport = require('passport');
 
 // Load models
 const Message = require('./models/message');
+const User = require('./models/user');
 
 const app = express();
 
