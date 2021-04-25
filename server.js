@@ -31,6 +31,9 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
+// Load facebook strategy
+require('./passport/facebook');
+
 // Connect to mongodb
 mongoose.connect(Keys.MongoDB,
   {
@@ -80,6 +83,14 @@ app.get('/contact', (req, res) => {
     "title": "Contact"
   });
 });
+
+app.get('/auth/facebook', passport.authenticate('facebook', {
+  scope: ['email']
+}));
+app.get('/auth/facebook/callback', passport.authenticate('facebook',{
+  successRedirect: '/profile',
+  failureRedirect: '/' 
+}));
 
 app.post('/contactUs', (req, res) => {
   console.log(req.body);

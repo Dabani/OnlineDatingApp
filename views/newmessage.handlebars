@@ -1,11 +1,20 @@
-<h1>Thank you for contacting!</h1>
+
+<h1 class="text-center">Thank you for contacting!</h1>
 {{#each messages}}
-<p>{{fullName}}</p>
-<p>{{email}}</p>
-<p>{{message}}</p>
-<small>{{date}}</small>
+  <div class="card my-3">
+    <div class="card-body">
+      <p>{{fullName}}</p>
+      <p>{{email}}</p>
+      <p>{{message}}</p>
+      <small>{{date}}</small>
+    </div>
+  </div>
 {{else}}
-<p>No messages...</p>
-<hr>
+  <div class="card my-3">
+    <div class="card-body">
+      <p>No messages...</p>
+    </div>
+  </div>
 {{/each}}
-<a class="btn btn-success" href="/contact">Contact again</a>
+<hr>
+<a class="btn btn-success text-center" href="/contact">Contact again</a>
