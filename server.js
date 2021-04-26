@@ -92,6 +92,17 @@ app.get('/auth/facebook/callback', passport.authenticate('facebook',{
   failureRedirect: '/' 
 }));
 
+app.get('/profile', (req, res) => {
+  User.findById({_id:req.user._id}).then((user) => {
+    if (user) {
+      res.render('profile', {
+        title: 'Profile',
+        user:user
+      });
+    }
+  });
+});
+
 app.post('/contactUs', (req, res) => {
   console.log(req.body);
   const newMessage = {
