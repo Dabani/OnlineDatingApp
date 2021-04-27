@@ -31,6 +31,12 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
+// Make user global object
+app.use((req, res, next) => {
+  res.locals.user = req.user || null;
+  next();
+});
+
 // Load facebook strategy
 require('./passport/facebook');
 
