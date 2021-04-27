@@ -95,11 +95,34 @@ app.get('/auth/facebook/callback', passport.authenticate('facebook',{
 app.get('/profile', (req, res) => {
   User.findById({_id:req.user._id}).then((user) => {
     if (user) {
-      res.render('profile', {
-        title: 'Profile',
-        user:user
+      user.online = true;
+      user.save((err, user) => {
+        if (err) {
+          throw err
+        } else {
+          res.render('profile', {
+            title: 'Profile',
+            user: user
+          });
+        }
       });
     }
+  });
+});
+
+app.get('/logout', (req, res) => {
+  User.findById({_id:req.user._id})
+  .then((user) => {
+    user.online = false;
+    user.save((err, user) => {
+      if (err) {
+        throw err;
+      }
+      if (user) {
+        req.logout();
+        res.redirect('/');        
+      }
+    });
   });
 });
 
