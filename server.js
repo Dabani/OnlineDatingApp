@@ -17,6 +17,9 @@ const app = express();
 // Load keys file
 const Keys = require('./config/keys');
 
+// Load helpers
+const { requireLogin, ensureGuest } = require('./helpers/auth');
+
 // Use body-parser middleware
 app.use(bodyParser.urlencoded({extended:false}));
 app.use(bodyParser.json());
@@ -72,19 +75,19 @@ app.use('/js', express.static(__dirname + '/node_modules/@popperjs/core/dist/umd
 app.use('/css', express.static(__dirname + '/node_modules/bootstrap/dist/css')); // redirect CSS bootstrap
 app.use('/css', express.static(__dirname + '/node_modules/bootstrap-icons/font/')); // redirect CSS bootstrap-icons
 
-app.get('/', (req,res) => {
+app.get('/', ensureGuest, (req,res) => {
   res.render('home',{
     "title": "Home"
   });
 });
 
-app.get('/about', (req, res) => {
+app.get('/about', ensureGuest, (req, res) => {
   res.render('about', {
     "title": "About"
   });
 });
 
-app.get('/contact', (req, res) => {
+app.get('/contact', ensureGuest, (req, res) => {
   res.render('contact', {
     "title": "Contact"
   });
@@ -98,7 +101,7 @@ app.get('/auth/facebook/callback', passport.authenticate('facebook',{
   failureRedirect: '/' 
 }));
 
-app.get('/profile', (req, res) => {
+app.get('/profile', requireLogin, (req, res) => {
   User.findById({_id:req.user._id}).then((user) => {
     if (user) {
       user.online = true;
