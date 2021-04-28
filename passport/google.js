@@ -19,4 +19,29 @@ passport.use(new GoogleStrategy({
   callbackURL: 'http://localhost:3000/auth/google/callback'
 },(accessToken, refreshToken, profile, done) => {
   console.log(profile);
+
+  User.findOne({google:profile.id}, (err, user) => {
+    if (err) {
+      return done(err);
+    }
+    if (user) {
+      return done(null, user);
+    } else {
+      const newUser = {
+        firstname: profile.name.givenName,
+        lastname: profile.name.familyName,
+        fullname: profile.displayName,
+        image: profile.photos[0].value,
+        google: profile.id
+      }
+      new User(newUser).save((err, user) => {
+        if (err) {
+          return done(err);
+        }
+        if (user) {
+          return done(null, user);
+        }
+      });
+    }
+  });
 }));
