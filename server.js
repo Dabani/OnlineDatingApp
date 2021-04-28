@@ -40,8 +40,9 @@ app.use((req, res, next) => {
   next();
 });
 
-// Load facebook strategy
+// Load social strategies (Facebook, Google)
 require('./passport/facebook');
+require('./passport/google');
 
 // Connect to mongodb
 mongoose.connect(Keys.MongoDB,
@@ -100,6 +101,12 @@ app.get('/auth/facebook', passport.authenticate('facebook', {
 app.get('/auth/facebook/callback', passport.authenticate('facebook',{
   successRedirect: '/profile',
   failureRedirect: '/' 
+}));
+
+app.get('/auth/google', passport.authenticate('google'));
+app.get('/auth/google/callback', passport.authenticate('google', {
+  successRedirect: '/profile',
+  failureRedirect: '/'
 }));
 
 app.get('/profile', requireLogin, (req, res) => {

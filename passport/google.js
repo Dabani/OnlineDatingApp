@@ -12,3 +12,11 @@ passport.deserializeUser((id, done) => {
     return done(err, user);
   });
 });
+
+passport.use(new GoogleStrategy({
+  consumerKey: keys.GoogleClientId,
+  consumerSecret: keys.GoogleClientSecret,
+  callbackURL: 'http://localhost:3000/auth/google/callback'
+},(accessToken, refreshToken, profile, done) => {
+  console.log(profile);
+}));
