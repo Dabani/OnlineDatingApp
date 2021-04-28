@@ -167,7 +167,25 @@ app.post('/signup', (req, res) => {
       password2: req.body.password2
     });
   } else {
-    res.send('No errors, ready to create a new account');
+    User.findOne({email: req.body.email})
+    .then((user) => {
+      if (user) {
+        let errors = [];
+        errors.push({text: 'Email already exists'});
+        res.render('newAccount', {
+          title: 'Signup',
+          errors:errors
+        });
+      } else {
+        const newUser = {
+          fullname: req.body.username,
+          email: req.body.email,
+          password: req.body.password
+        }
+        console.log(newUser);
+      }
+    });
+    
   }
 });
 
