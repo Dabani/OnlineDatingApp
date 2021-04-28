@@ -49,9 +49,10 @@ app.use((req, res, next) => {
   next();
 });
 
-// Load social strategies (Facebook, Google)
+// Load passport strategies (Facebook, Google, Local)
 require('./passport/facebook');
 require('./passport/google');
+require('./passport/local');
 
 // Connect to mongodb
 mongoose.connect(Keys.MongoDB,
@@ -197,9 +198,21 @@ app.post('/signup', (req, res) => {
           }
         });
       }
-    });
-    
+    });    
   }
+});
+
+app.post('/login', passport.authenticate('local', {
+  successRedirect: '/profile',
+  failureRedirect: '/loginErrors'
+}));
+
+app.get('/loginErrors', (req, res) => {
+  let errors = [];
+  errors.push({text: 'User not found or Password incorrect!'});
+  res.render('home', {
+    errors:errors
+  });
 });
 
 app.get('/logout', (req, res) => {
