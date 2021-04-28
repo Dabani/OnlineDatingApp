@@ -1,6 +1,13 @@
 <h1 class="m-5"><i class="bi bi-house-door"></i> Welcome to Rambagiza, the best Dating Website for you!</h1>
 {{#if user}}
-<p>Hello {{user.firstname}}, you are logged in...</p>
+<p>Hello {{user.firstname}}, you are now logged in...</p>
 {{else}}
-<a href="/auth/facebook/" class="btn btn-primary btn-lg">Login with Facebook</a>
+<p>
+  <a href="/auth/facebook" class="btn btn-primary btn-lg">Login with Facebook</a>
+</p>
+
+<p>
+  <a href="/auth/google" class="btn btn-danger btn-lg">Login with Google</a>
+</p>
+
 {{/if}}
