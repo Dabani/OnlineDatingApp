@@ -8,6 +8,7 @@ const passport = require('passport');
 const cookieParser = require('cookie-parser');
 const session = require('express-session');
 const flash = require('connect-flash');
+const bcrypt = require('bcryptjs');
 
 // Load models
 const Message = require('./models/message');
@@ -177,10 +178,12 @@ app.post('/signup', (req, res) => {
           errors:errors
         });
       } else {
+        var salt = bcrypt.genSaltSync(10);
+        var hash = bcrypt.hashSync(req.body.password, salt);
         const newUser = {
           fullname: req.body.username,
           email: req.body.email,
-          password: req.body.password
+          password: hash
         }
         console.log(newUser);
       }
