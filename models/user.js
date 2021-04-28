@@ -39,6 +39,9 @@ const userSchema = new Schema({
   wallet: {
     type: Number,
     default: 0
+  },
+  password: {
+    type: String
   }
 });
 

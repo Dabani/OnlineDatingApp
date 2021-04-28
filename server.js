@@ -147,7 +147,6 @@ app.get('/newAccount', (req, res) => {
 });
 
 app.post('/signup', (req, res) => {
-  console.log(req.body);
   let errors = [];
 
   if (req.body.password !== req.body.password2) {
@@ -185,7 +184,18 @@ app.post('/signup', (req, res) => {
           email: req.body.email,
           password: hash
         }
-        console.log(newUser);
+        new User(newUser).save((err, user) => {
+          if (err) {
+            throw err;
+          }
+          if (user) {
+            let success = [];
+            success.push({text: 'You have successfully created account. You can now login!'});
+            res.render('home', {
+              success: success
+            });
+          }
+        });
       }
     });
     

@@ -15,6 +15,11 @@
     <p class="text-center">or</p>
     <form action="/login" method="post">
       {{!-- <h3>Login with email</h3> --}}
+      {{#each success}}
+      <p class="text-success">
+        {{text}}
+      </p>
+      {{/each}}
 
       <div class="form-group">
         <label for="email">Email</label>
