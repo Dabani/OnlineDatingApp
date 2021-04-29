@@ -16,7 +16,7 @@ passport.deserializeUser((id, done) => {
 passport.use(new facebookStrategy({
   clientID: keys.FacebookAppId,
   clientSecret: keys.FacebookAppSecret,
-  callbackURL: 'http://localhost:3000/auth/facebook/callback',
+  callbackURL: 'https://warm-wildwood-26257.herokuapp.com/auth/facebook/callback',
   profileFields: ['email', 'name', 'displayName', 'photos']
 }, (accessToken, refreshToken, profile, done) => {
   console.log(profile);
