@@ -215,6 +215,13 @@ app.get('/loginErrors', (req, res) => {
   });
 });
 
+// handle route
+app.get('/uploadImage', (req, res) => {
+  res.render('uploadImage', {
+    title: 'Upload'
+  });
+});
+
 app.get('/logout', (req, res) => {
   User.findById({_id:req.user._id})
   .then((user) => {
