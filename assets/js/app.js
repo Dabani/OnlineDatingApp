@@ -1,5 +1,8 @@
-/* 
-window.onload = function(){
-  alert('Script file app.js is successfully connected!');
+
+function showSpinner() {
+  document.getElementById('uploadForm').style.display = 'none';
+  document.getElementById('spinner').style.display = 'block';
+  setTimeout(function () {
+    document.getElementById('uploadForm').submit();
+  }, 7000)
 }
- */
