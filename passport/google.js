@@ -3,6 +3,8 @@ const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const User = require('../models/user');
 const keys = require('../config/keys');
 
+// require('https').globalAgent.options.rejectUnauthorized = false;
+
 passport.serializeUser((user, done) => {
   return done(null, user.id);
 });
