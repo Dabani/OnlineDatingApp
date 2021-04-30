@@ -9,6 +9,7 @@ const cookieParser = require('cookie-parser');
 const session = require('express-session');
 const flash = require('connect-flash');
 const bcrypt = require('bcryptjs');
+const formidable = require('formidable');
 
 // Load models
 const Message = require('./models/message');
@@ -21,6 +22,7 @@ const Keys = require('./config/keys');
 
 // Load helpers
 const { requireLogin, ensureGuest } = require('./helpers/auth');
+const { uploadImage } = require('./helpers/aws');
 
 // Use body-parser middleware
 app.use(bodyParser.urlencoded({extended:false}));
@@ -232,6 +234,20 @@ app.post('/uploadAvatar', (req, res) => {
         }
       })
     })
+});
+
+app.post('/uploadFile', uploadImage.any(), (req, res) => {
+  const form = new formidable.IncomingForm();
+  form.on('file', (field, file) => {
+    console.log(file);
+  });
+  form.on('error', (err) => {
+    console.log(err);
+  });
+  form.on('end', () => {
+    console.log('Image upload is successfull ...');
+  });
+  form.parse(req);
 });
 
 app.get('/logout', (req, res) => {
