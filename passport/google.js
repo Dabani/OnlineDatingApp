@@ -16,7 +16,7 @@ passport.deserializeUser((id, done) => {
 passport.use(new GoogleStrategy({
   clientID: keys.GoogleClientId,
   clientSecret: keys.GoogleClientSecret,
-  callbackURL: 'https://warm-wildwood-26257.herokuapp.com/auth/google/callback'
+  callbackURL: keys.GoogleCallBackUrl
 },(accessToken, refreshToken, profile, done) => {
   console.log(profile);
 
