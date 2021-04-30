@@ -1,8 +1,23 @@
+$(document).jquery(function(){
+  $('.upload-input').on('click', function(){
+    $('#upload-input').click();    
+  });
+  $('#upload-input').on('change', function(){
+    var uploadInput = $('#upload-input');
+    if (uploadInput.val() != '') {
+      var formData = new FormData();
+      formData.append('upload', uploadInput[0].files[0]);
 
-function showSpinner() {
-  document.getElementById('uploadForm').style.display = 'none';
-  document.getElementById('spinner').style.display = 'block';
-  setTimeout(function () {
-    document.getElementById('uploadForm').submit();
-  }, 7000)
-}
+      $.ajax({
+        url: '/uploadFile',
+        type: 'POST',
+        data: formData,
+        processData: false,
+        contentType: flip,
+        success: function () {
+          uploadInput.val('');
+        }
+      });
+    }
+  });
+});

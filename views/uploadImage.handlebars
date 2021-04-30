@@ -1,19 +1,19 @@
 <div class="col-sm-4 offset-sm-4 p-3 my-4 shad">
-  <h1 id="spinner" style="display: none;">
+  <h1 id="spinner" style="display:none">
     Please wait ...
   </h1>
-  <form action="/uploadAvatar" method="POST" enctype="multipart/form-data" id="uploadForm">
+  <form action="/uploadAvatar" method="POST" id="uploadForm">
 
     {{!-- <div class="form-group my-3">
       <button class="btn btn-success upload-btn" type="button">
         Choose Image
       </button>
-      <input class="form-control" type="file" name="upload" id="upload-input" style="display: none;">
+      <input type="file" name="upload" id="upload-input" style="display:none">
     </div> --}}
 
     <div class="my-3">
-      <label for="upload-input" class="btn btn-success upload-btn">Choose image</label>
-      <input class="form-control" type="file" name="upload" id="upload-input" style="display: none;">
+      <label for="upload-input" class="btn btn-success upload-input">Choose image</label>
+      <input class="form-control" type="file" name="upload" id="upload-input" style="display: none">
     </div>
 
     <div class="form-group my-3">
@@ -21,6 +21,15 @@
         Upload
       </button>
     </div>
-
+    
   </form>
 </div>
+<script>
+    function showSpinner(){
+        document.getElementById('uploadForm').style.display = 'none';
+        document.getElementById('spinner').style.display = 'block';
+        setTimeout(function(){
+            document.getElementById('uploadForm').submit();
+        },7000)
+    }
+</script>
