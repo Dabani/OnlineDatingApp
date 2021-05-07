@@ -15,3 +15,8 @@ h6 {
   -webkit-box-shadow: 0 0 1em rgba(180, 180, 180, 0.6);
   -o-box-shadow: 0 0 1em rgba(180, 180, 180, 0.6);
 }
+
+th,
+td {
+  padding: .75em 0;
+}
