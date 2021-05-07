@@ -18,5 +18,17 @@ h6 {
 
 th,
 td {
-  padding: .75em 0;
+  padding: .5em 0;
+}
+
+.bi-pencil-square {
+  cursor: pointer;
+}
+
+#profileEditor .row {
+  padding: .5em 0;
+}
+
+#profileEditor label {
+  font-weight: 600;
 }

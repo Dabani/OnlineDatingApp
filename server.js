@@ -73,10 +73,23 @@ mongoose.connect(Keys.MongoDB,
 const port = process.env.PORT || 3000;
 
 // Set up view engine
-app.engine('handlebars', exphbs({
-  defaultLayout:'main',
-  handlebars: allowInsecurePrototypeAccess(Handlebars)
-}));
+const hbs = exphbs.create({
+  defaultLayout: 'main',
+  handlebars: allowInsecurePrototypeAccess(Handlebars),
+
+  /* Custom helpers */
+  helpers: {
+    if_eq: function (a, b, opts) {
+      if (a == b) {
+        return opts.fn(this);
+      } else {
+        return opts.inverse(this);
+      }
+    }
+  }
+});
+
+app.engine('handlebars', hbs.engine);
 app.set('view engine', 'handlebars');
 
 // Set up bootstrap

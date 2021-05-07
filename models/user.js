@@ -25,13 +25,16 @@ const userSchema = new Schema({
     type: String
   },
   country: {
-    type: String
+    type: String,
+    default: 'Rwanda'
   },
   city: {
-    type: String
+    type: String,
+    default: 'Kigali'
   },
   area: {
-    type: String
+    type: String,
+    default: 'Nyamirambo'
   },
   age: {
     type: String
