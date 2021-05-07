@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <div class="container-fluid">
-    <a class="navbar-brand" href="/">Rambagiza</a>
+    <a class="navbar-brand" href="/"><i class="bi-house"></i> Rambagiza</a>
     <a class="navbar-brand" href="#">{{title}}</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -9,14 +9,18 @@
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         {{#if user}}
           <li class="nav-item">
-            <a class="nav-link" href="/logout">Logout</a>
+            <a class="nav-link" href="/profile"><i class="bi-person-lines-fill"></i> Profile</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="/logout"><i class="bi-box-arrow-right"></i> Logout</a>
           </li>
         {{else}}
           <li class="nav-item">
-            <a class="nav-link" href="/about">About</a>
+            <a class="nav-link" href="/about"><i class="bi-card-image"></i> About</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/contact">Contact</a>
+            <a class="nav-link" href="/contact"><i class="bi-card-heading"></i>  Contact</a>
           </li>
         {{/if}}
       </ul>
