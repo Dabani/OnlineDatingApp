@@ -166,9 +166,24 @@ app.post('/updateProfile', requireLogin, (req, res) => {
     user.city = req.body.city;
     user.area = req.body.area;
     user.save(() => {
-      res.redirect('/profile')
+      res.redirect('/profile');
     });
-  })
+  });
+});
+
+app.get('/askToDelete', requireLogin, (req, res) => {
+  res.render('askToDelete', {
+    title: 'Delete'
+  });
+});
+
+app.get('/deleteAccount', (req, res) => {
+  User.deleteOne({_id:req.user._id})
+  .then(() => {
+    res.render('accountDeleted', {
+      title: 'Deleted'
+    });
+  });
 });
 
 app.get('/newAccount', (req, res) => {

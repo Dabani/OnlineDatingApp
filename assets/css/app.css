@@ -25,6 +25,14 @@ td {
   cursor: pointer;
 }
 
+#profile-info a {
+  text-decoration: none;
+}
+
+#profile-info i {
+  margin-right: 1em;
+}
+
 #profileEditor .row {
   padding: .5em 0;
 }
