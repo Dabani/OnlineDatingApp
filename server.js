@@ -154,6 +154,23 @@ app.get('/profile', requireLogin, (req, res) => {
   });
 });
 
+app.post('/updateProfile', requireLogin, (req, res) => {
+  User.findById({_id:req.user._id})
+  .then((user) => {
+    user.fullname = req.body.fullname;
+    user.email = req.body.email;
+    user.gender = req.body.gender;
+    user.age = req.body.age;
+    user.about = req.body.about;
+    user.country = req.body.country;
+    user.city = req.body.city;
+    user.area = req.body.area;
+    user.save(() => {
+      res.redirect('/profile')
+    });
+  })
+});
+
 app.get('/newAccount', (req, res) => {
   res.render('newAccount', {
     title: 'Signup'
