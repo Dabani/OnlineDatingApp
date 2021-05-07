@@ -1,6 +1,6 @@
-$(document).jquery(function(){
-  $('.upload-input').on('click', function(){
-    $('#upload-input').click();    
+$(function(){
+  $('.upload-btn').on('click', function(){
+    $('#upload-input').click();
   });
   $('#upload-input').on('change', function(){
     var uploadInput = $('#upload-input');
@@ -13,8 +13,8 @@ $(document).jquery(function(){
         type: 'POST',
         data: formData,
         processData: false,
-        contentType: flip,
-        success: function () {
+        contentType: false,
+        success: function(){
           uploadInput.val('');
         }
       });

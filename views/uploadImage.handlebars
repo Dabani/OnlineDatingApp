@@ -4,16 +4,11 @@
   </h1>
   <form action="/uploadAvatar" method="POST" id="uploadForm">
 
-    {{!-- <div class="form-group my-3">
+    <div class="form-group my-3">
       <button class="btn btn-success upload-btn" type="button">
         Choose Image
       </button>
       <input type="file" name="upload" id="upload-input" style="display:none">
-    </div> --}}
-
-    <div class="my-3">
-      <label for="upload-input" class="btn btn-success upload-input">Choose image</label>
-      <input class="form-control" type="file" name="upload" id="upload-input" style="display: none">
     </div>
 
     <div class="form-group my-3">
@@ -25,11 +20,11 @@
   </form>
 </div>
 <script>
-    function showSpinner(){
-        document.getElementById('uploadForm').style.display = 'none';
-        document.getElementById('spinner').style.display = 'block';
-        setTimeout(function(){
-            document.getElementById('uploadForm').submit();
-        },7000)
-    }
+  function showSpinner(){
+    document.getElementById('uploadForm').style.display = 'none';
+    document.getElementById('spinner').style.display = 'block';
+    setTimeout(function(){
+      document.getElementById('uploadForm').submit();
+    },7000)
+  }
 </script>

@@ -225,7 +225,7 @@ app.get('/uploadImage', (req, res) => {
 app.post('/uploadAvatar', (req, res) => {
   User.findById({_id:req.user._id})
     .then((user) => {
-      user.image = req.body.upload;
+      user.image = `https://rambagiza-online.s3.us-east-2.amazonaws.com/${req.body.upload}`;
       user.save((err) => {
         if (err) {
           throw err;
