@@ -320,6 +320,59 @@ app.get('/userProfile/:id', requireLogin, (req, res) => {
   });
 });
 
+// Start chat process
+app.get('/startChat/:id', requireLogin, (req, res) => {
+  Chat.findOne({sender:req.params.id, receiver:req.user._id})
+  .then((chat) => {
+    if (chat) {
+      chat.receiverRead = true;
+      chat.senderRead = false;
+      chat.date = new Date();
+      chat.save((err, chat) => {
+        if (err) {
+          throw err;
+        }
+        if (chat) {
+          res.redirect(`/chat/${chat._id}`);
+        }
+      });
+    } else {
+      Chat.findOne({sender:req.user._id, receiver:req.params.id})
+      .then((chat) => {
+        if (chat) {
+          chat.senderRead = true;
+          chat.receiverRead = false;
+          chat.date = new Date();
+          chat.save((err, chat) => {
+            if (err) {
+              throw err;
+            }
+            if (chat) {
+              res.redirect(`/chat/${chat._id}`);
+            }
+          });
+        } else {
+          const newChat = {
+            sender: req.user._id,
+            receiver: req.params.id,
+            senderRead: true,
+            receiverRead: false,
+            date: new Date()
+          };
+          new Chat(newChat).save((err, chat) => {
+            if (err) {
+              throw err;
+            }
+            if (chat) {
+              res.redirect(`/chat/${chat._id}`);
+            }
+          });
+        }
+      });
+    }
+  });
+});
+
 app.get('/logout', (req, res) => {
   User.findById({_id:req.user._id})
   .then((user) => {
