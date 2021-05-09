@@ -47,3 +47,10 @@ a {
   width: 6em;
   height: 6em;
 }
+
+.chatroom-users {
+  object-fit: cover;
+  overflow: hidden;
+  width: 4em;
+  height: 4em;
+}
