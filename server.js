@@ -295,6 +295,19 @@ app.post('/uploadFile', requireLogin, uploadImage.any(), (req, res) => {
   form.parse(req);
 });
 
+// Handle route for users
+app.get('/singles', requireLogin, (req, res) => {
+  User.find({})
+  .then((singles) => {
+    res.render('singles', {
+      title: 'Singles',
+      singles: singles
+    });
+  }).catch((err) => {
+    console.log(err);
+  });
+});
+
 app.get('/logout', (req, res) => {
   User.findById({_id:req.user._id})
   .then((user) => {

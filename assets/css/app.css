@@ -40,3 +40,10 @@ td {
 #profileEditor label {
   font-weight: 600;
 }
+
+.img-thumbnail {
+  object-fit: cover;
+  overflow: hidden;
+  width: 6em;
+  height: 6em;
+}
