@@ -46,4 +46,5 @@ td {
   overflow: hidden;
   width: 6em;
   height: 6em;
+  border-radius: 50%;
 }

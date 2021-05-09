@@ -298,6 +298,7 @@ app.post('/uploadFile', requireLogin, uploadImage.any(), (req, res) => {
 // Handle route for users
 app.get('/singles', requireLogin, (req, res) => {
   User.find({})
+  .sort({date:'desc'})
   .then((singles) => {
     res.render('singles', {
       title: 'Singles',
