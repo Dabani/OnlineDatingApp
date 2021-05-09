@@ -373,6 +373,25 @@ app.get('/startChat/:id', requireLogin, (req, res) => {
   });
 });
 
+// Display Chat Room
+app.get('/chat/:id', requireLogin, (req, res) => {
+  Chat.findById({_id:req.params.id})
+  .populate('sender')
+  .populate('receiver')
+  .populate('chats.senderName')
+  .populate('chats.receiverName')
+  .then((chat) => {
+    User.findOne({_id:req.user._id})
+    .then((user) => {
+      res.render('chatRoom', {
+        title: 'Chat',
+        user: user,
+        chat: chat
+      });
+    });
+  });
+});
+
 app.get('/logout', (req, res) => {
   User.findById({_id:req.user._id})
   .then((user) => {
