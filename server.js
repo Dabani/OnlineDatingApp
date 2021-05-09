@@ -309,6 +309,16 @@ app.get('/singles', requireLogin, (req, res) => {
   });
 });
 
+app.get('/userProfile/:id', requireLogin, (req, res) => {
+  User.findById({_id:req.params.id})
+  .then((user) => {
+    res.render('userProfile', {
+      title: 'Profile',
+      oneUser: user
+    });
+  });
+});
+
 app.get('/logout', (req, res) => {
   User.findById({_id:req.user._id})
   .then((user) => {
