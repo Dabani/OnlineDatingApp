@@ -177,7 +177,7 @@ app.get('/askToDelete', requireLogin, (req, res) => {
   });
 });
 
-app.get('/deleteAccount', (req, res) => {
+app.get('/deleteAccount', requireLogin, (req, res) => {
   User.deleteOne({_id:req.user._id})
   .then(() => {
     res.render('accountDeleted', {
@@ -261,13 +261,13 @@ app.get('/loginErrors', (req, res) => {
 });
 
 // handle get route
-app.get('/uploadImage', (req, res) => {
+app.get('/uploadImage', requireLogin, (req, res) => {
   res.render('uploadImage', {
     title: 'Upload'
   });
 });
 
-app.post('/uploadAvatar', (req, res) => {
+app.post('/uploadAvatar', requireLogin, (req, res) => {
   User.findById({_id:req.user._id})
     .then((user) => {
       user.image = `https://rambagiza-online.s3.us-east-2.amazonaws.com/${req.body.upload}`;
@@ -281,7 +281,7 @@ app.post('/uploadAvatar', (req, res) => {
     })
 });
 
-app.post('/uploadFile', uploadImage.any(), (req, res) => {
+app.post('/uploadFile', requireLogin, uploadImage.any(), (req, res) => {
   const form = new formidable.IncomingForm();
   form.on('file', (field, file) => {
     console.log(file);
