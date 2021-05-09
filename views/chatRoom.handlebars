@@ -1,16 +1,42 @@
 <div class="row">
   <div class="col-sm-6 offset-sm-3 my-4">
     <h3>
-      <img src="{{chat.sender.image}}" class="chatroom-users rounded-circle img-thumbnail ">
-      <img src="{{chat.receiver.image}}" class="chatroom-users rounded-circle img-thumbnail ">
+      <img src="{{chat.sender.image}}" class="chatroom-users rounded-circle img-thumbnail">
+      <img src="{{chat.receiver.image}}" class="chatroom-users rounded-circle img-thumbnail">
     </h3>
-    <div class="d-flex">
-      <div class="flex-shrink-0">
-        <img src="..." alt="...">
-      </div>
-      <div class="flex-grow-1 ms-3">
-        This is some content from a media component. You can replace this with any content and adjust it as needed.
-      </div>
-    </div>
+
+    {{#each chat}}
+      {{#each chats}}
+        {{#if receiverName}}
+          <div class="d-flex">
+            <div class="flex-shrink-0">
+              <img src="{{receiverName.image}}" class="chatroom-users rounded-circle img-thumbnail">
+            </div>
+            <div class="flex-grow-1 ms-3">
+              <h5>{{receiverMessage}}</h5>
+              <small>{{date}}</small>
+            </div>
+          </div>
+        {{/if}}
+      {{/each}}
+    {{/each}}
+
+    <hr>
+    
+    {{#each chat}}
+      {{#each chats}}
+        {{#if senderName}}
+          <div class="d-flex">
+            <div class="flex-shrink-0">
+              <img src="{{senderName.image}}" class="chatroom-users rounded-circle img-thumbnail">
+            </div>
+            <div class="flex-grow-1 ms-3">
+              <h5>{{senderMessage}}</h5>
+              <small>{{date}}</small>
+            </div>
+          </div>
+        {{/if}}
+      {{/each}}
+    {{/each}}
   </div>
 </div>  
