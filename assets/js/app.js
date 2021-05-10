@@ -21,3 +21,8 @@ $(function(){
     }
   });
 });
+
+// Make chatRoom autoscrollable
+$(function(){
+  $('#messages').animate({scrollTop:1000000}, 800);
+});
