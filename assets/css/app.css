@@ -71,3 +71,15 @@ a {
 .receiver {
   background-color: chartreuse;
 }
+
+.card {
+  border: 0;
+  border-radius: 0;
+}
+
+#singles .card-img-top {
+  border-radius: 0;
+  object-fit: cover;
+  overflow: hidden;
+  height: 10em;
+}

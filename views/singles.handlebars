@@ -4,18 +4,55 @@
     <div class="row">
 
       {{#each singles}}
-          <div class="col-sm-3 mb-3">
-            <a href="/userProfile/{{_id}}">
+          <div class="col-sm-4 mb-3" id="singles">
+
             {{#if online}}
-              <img src="{{image}}" alt="{{fullname}}" class="img-thumbnail rounded-circle">
-              <br>
-              <i class="bi bi-circle-fill text-success"><span class="px-3">Online</span></i>
+            <div class="card">
+              <img src="{{image}}" class="card-img-top" alt="...">
+              <div class="card-body pt-0">
+                <div class="row">
+
+                  <div class="col float-left">
+                    <a href="/userProfile/{{_id}}">
+                      <i class="bi bi-file-person" data-bs-toggle="tooltip" data-bs-placement="top" title="Go to Profile"></i>
+                    </a>
+
+                    <a href="/startChat/{{_id}}">
+                      <i class="bi bi-chat-text" data-bs-toggle="tooltip" data-bs-placement="top" title="Start Chat"></i>
+                    </a>
+                  </div>
+
+                  <div class="col float-right text-end">
+                    <i class="bi bi-circle-fill text-success"><span class="px-1">Online</span></i>
+                  </div>
+
+                </div>
+              </div>
+            </div>
             {{else}}
-              <img src="{{image}}" alt="{{fullname}}" class="img-thumbnail rounded-circle">
-              <br>
-              <i class="bi bi-circle-fill text-danger"><span class="px-3">Offline</span></i>
+            <div class="card">
+              <img src="{{image}}" class="card-img-top" alt="...">
+              <div class="card-body pt-0">
+                <div class="row">
+
+                  <div class="col float-left">
+                    <a href="/userProfile/{{_id}}">
+                      <i class="bi bi-file-person" data-bs-toggle="tooltip" data-bs-placement="top" title="Go to Profile"></i>
+                    </a>
+
+                    <a href="/startChat/{{_id}}">
+                      <i class="bi bi-chat-text" data-bs-toggle="tooltip" data-bs-placement="top" title="Start Chat"></i>
+                    </a>
+                  </div>
+
+                  <div class="col float-right text-end">
+                    <i class="bi bi-circle-fill text-danger"><span class="px-1">Offline</span></i>
+                  </div>
+
+                </div>
+              </div>
+            </div>
             {{/if}}
-            </a>
           </div>
 
       {{else}}

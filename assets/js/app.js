@@ -26,3 +26,9 @@ $(function(){
 $(function(){
   $('#messages').animate({scrollTop:1000000}, 800);
 });
+
+// Tooltips
+var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+  return new bootstrap.Tooltip(tooltipTriggerEl)
+})
