@@ -73,8 +73,9 @@ a {
 }
 
 .card {
-  border: 0;
+  border: solid 1;
   border-radius: 0;
+  padding: 0.125em;
 }
 
 #singles .card-img-top {
