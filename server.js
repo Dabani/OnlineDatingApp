@@ -515,7 +515,7 @@ app.post('/chat/:id', requireLogin, (req, res) => {
 })
 
 // Get route to send smile
-app.get('/sendSmile/:id', (req, res) => {
+app.get('/sendSmile/:id', requireLogin, (req, res) => {
   const newSmile = {
     sender: req.user._id,
     receiver: req.params.id,
@@ -529,6 +529,14 @@ app.get('/sendSmile/:id', (req, res) => {
       res.redirect(`/userProfile/${req.params.id}`);
     }
   })
+});
+
+// Delete smile
+app.get('/deleteSmile/:id', requireLogin, (req, res) => {
+  Smile.deleteOne({receiver:req.params.id, sender:req.user._id})
+  .then(() => {
+    res.redirect(`/userProfile/${req.params.id}`);
+  });
 });
 
 app.get('/logout', (req, res) => {
