@@ -543,6 +543,19 @@ app.get('/deleteSmile/:id', requireLogin, (req, res) => {
   });
 });
 
+// Show Smile Sender
+app.get('/showSmile/:id', requireLogin, (req, res) => {
+  Smile.findOne({_id:req.params.id})
+  .populate('sender')
+  .populate('receiver')
+  .then((smile) => {
+    res.render('smile/showSmile', {
+      title: 'New Smile',
+      smile:smile
+    });
+  });
+});
+
 app.get('/logout', (req, res) => {
   User.findById({_id:req.user._id})
   .then((user) => {
