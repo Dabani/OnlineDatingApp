@@ -316,10 +316,14 @@ app.get('/singles', requireLogin, (req, res) => {
 app.get('/userProfile/:id', requireLogin, (req, res) => {
   User.findById({_id:req.params.id})
   .then((user) => {
-    res.render('userProfile', {
-      title: 'Profile',
-      oneUser: user
-    });
+    Smile.findOne({receiver:req.params.id})
+    .then((smile) => {
+      res.render('userProfile', {
+        title: 'Profile',
+        oneUser: user,
+        smile: smile
+      });
+    })
   });
 });
 

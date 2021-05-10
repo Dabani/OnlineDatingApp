@@ -4,64 +4,64 @@
     <div class="row">
 
       {{#each singles}}
-          <div class="col-sm-4 mb-3" id="singles">
+        <div class="col-sm-4 mb-3" id="singles">
 
-            {{#if online}}
-            <div class="card">
-              <img src="{{image}}" class="card-img-top" alt="...">
-              <div class="card-body pt-2 px-0">
-                <div class="row px-0">
+          {{#if online}}
+          <div class="card">
+            <img src="{{image}}" class="card-img-top" alt="...">
+            <div class="card-body pt-2 px-0">
+              <div class="row px-0">
 
-                  <div class="col-sm-10 float-left">
-                    <a href="/userProfile/{{_id}}" class="btn btn-outline-primary card-link">
-                      <i class="bi bi-file-person" data-bs-toggle="tooltip" data-bs-placement="top" title="Go to Profile"></i>
-                    </a>
+                <div class="col-sm-10 float-left">
+                  <a href="/userProfile/{{_id}}" class="btn btn-outline-primary card-link" data-bs-toggle="tooltip" data-bs-placement="top" title="Go to Profile">
+                    <i class="bi bi-file-person"></i>
+                  </a>
 
-                    <a href="/startChat/{{_id}}" class="btn btn-outline-info card-link">
-                      <i class="bi bi-chat-text" data-bs-toggle="tooltip" data-bs-placement="top" title="Start Chat"></i>
-                    </a>
+                  <a href="/startChat/{{_id}}" class="btn btn-outline-info card-link" data-bs-toggle="tooltip" data-bs-placement="top" title="Start Chat">
+                    <i class="bi bi-chat-text"></i>
+                  </a>
 
-                    <a href="/sendSmile/{{_id}}" class="btn btn-outline-success card-link">
-                      <i class="bi bi-emoji-smile" data-bs-toggle="tooltip" data-bs-placement="top" title="Send Smile"></i>
-                    </a>
-                  </div>
-
-                  <div class="col-sm-2 float-right text-end lead">
-                    <i class="bi bi-circle-fill text-success" data-bs-toggle="tooltip" data-bs-placement="top" title="Online"></i>
-                  </div>
-
+                  <a href="/sendSmile/{{_id}}" class="btn btn-outline-success card-link" data-bs-toggle="tooltip" data-bs-placement="top" title="Send Smile">
+                    <i class="bi bi-emoji-smile"></i>
+                  </a>
                 </div>
+
+                <div class="col-sm-2 float-right text-end lead">
+                  <i class="bi bi-circle-fill text-success" data-bs-toggle="tooltip" data-bs-placement="top" title="Online"></i>
+                </div>
+
               </div>
             </div>
-            {{else}}
-            <div class="card">
-              <img src="{{image}}" class="card-img-top" alt="...">
-              <div class="card-body pt-2 px-0">
-                <div class="row px-0">
-
-                  <div class="col-sm-10 float-left">
-                    <a href="/userProfile/{{_id}}" class="btn btn-outline-primary card-link">
-                      <i class="bi bi-file-person" data-bs-toggle="tooltip" data-bs-placement="top" title="Go to Profile"></i>
-                    </a>
-
-                    <a href="/startChat/{{_id}}" class="btn btn-outline-info card-link">
-                      <i class="bi bi-chat-text" data-bs-toggle="tooltip" data-bs-placement="top" title="Start Chat"></i>
-                    </a>
-
-                    <a href="/sendSmile/{{_id}}" class="btn btn-outline-success card-link">
-                      <i class="bi bi-emoji-smile" data-bs-toggle="tooltip" data-bs-placement="top" title="Send Smile"></i>
-                    </a>
-                  </div>
-
-                  <div class="col-sm-2 float-right text-end lead">
-                    <i class="bi bi-circle-fill text-danger" data-bs-toggle="tooltip" data-bs-placement="top" title="Offline"></i>
-                  </div>
-
-                </div>
-              </div>
-            </div>
-            {{/if}}
           </div>
+          {{else}}
+          <div class="card">
+            <img src="{{image}}" class="card-img-top" alt="...">
+            <div class="card-body pt-2 px-0">
+              <div class="row px-0">
+
+                <div class="col-sm-10 float-left">
+                  <a href="/userProfile/{{_id}}" class="btn btn-outline-primary card-link" data-bs-toggle="tooltip" data-bs-placement="top" title="Go to Profile">
+                    <i class="bi bi-file-person"></i>
+                  </a>
+
+                  <a href="/startChat/{{_id}}" class="btn btn-outline-info card-link" data-bs-toggle="tooltip" data-bs-placement="top" title="Start Chat">
+                    <i class="bi bi-chat-text"></i>
+                  </a>
+
+                  <a href="/sendSmile/{{_id}}" class="btn btn-outline-success card-link" data-bs-toggle="tooltip" data-bs-placement="top" title="Send Smile">
+                    <i class="bi bi-emoji-smile"></i>
+                  </a>
+                </div>
+
+                <div class="col-sm-2 float-right text-end lead">
+                  <i class="bi bi-circle-fill text-danger" data-bs-toggle="tooltip" data-bs-placement="top" title="Offline"></i>
+                </div>
+
+              </div>
+            </div>
+          </div>
+          {{/if}}
+        </div>
 
       {{else}}
         <p>No user found!</p>

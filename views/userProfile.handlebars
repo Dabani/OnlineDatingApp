@@ -37,7 +37,18 @@
             </tr>
           </tbody>
         </table>
-        <a href="/startChat/{{oneUser._id}}" class="btn btn-primary mb-3">Send message</a> 
+        <a href="/startChat/{{oneUser._id}}" class="btn btn-outline-primary card-link mb-3" data-bs-toggle="tooltip" data-bs-placement="top" title="Start Chat">
+          <i class="bi bi-chat-text"></i>
+        </a>
+        {{#if smile}}
+        <a href="/deleteSmile/{{oneUser._id}}" class="btn btn-outline-danger card-link mb-3" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete Smile">
+          <i class="bi bi-emoji-smile"></i>
+        </a>
+        {{else}}
+        <a href="/sendSmile/{{oneUser._id}}" class="btn btn-success card-link mb-3" data-bs-toggle="tooltip" data-bs-placement="top" title="Send Smile">
+          <i class="bi bi-emoji-smile"></i>
+        </a>
+        {{/if}}
       </div>
     </div>
   </div>
