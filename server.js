@@ -510,6 +510,23 @@ app.post('/chat/:id', requireLogin, (req, res) => {
   })
 })
 
+// Get route to send smile
+app.get('/sendSmile/:id', (req, res) => {
+  const newSmile = {
+    sender: req.user._id,
+    receiver: req.params.id,
+    senderSent: true
+  };
+  new Smile(newSmile).save((err, smile) => {
+    if (err) {
+      throw err;
+    }
+    if (smile) {
+      res.redirect(`/userProfile/${req.params.id}`);
+    }
+  })
+});
+
 app.get('/logout', (req, res) => {
   User.findById({_id:req.user._id})
   .then((user) => {

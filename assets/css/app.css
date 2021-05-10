@@ -78,9 +78,10 @@ a {
   padding: 0.125em;
 }
 
+#profile .card-img-top,
 #singles .card-img-top {
   border-radius: 0;
   object-fit: cover;
   overflow: hidden;
-  height: 10em;
+  height: 12em;
 }
