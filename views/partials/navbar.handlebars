@@ -4,7 +4,11 @@
     <a class="navbar-brand" href="/">
       <img src="./images/rambagiza.png" alt="RAMBAGIZA"  height="24">
     </a>
+    {{#if newSmile}}
+      <a href="/showSmile/{{newSmile._id}}"><i class="bi bi-emoji-smile"></i></a>
+    {{else}}
     <a class="navbar-brand" href="#">{{title}}</a>
+    {{/if}}
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
