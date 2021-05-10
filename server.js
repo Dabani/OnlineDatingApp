@@ -24,6 +24,7 @@ const Keys = require('./config/keys');
 // Load helpers
 const { requireLogin, ensureGuest } = require('./helpers/auth');
 const { uploadImage } = require('./helpers/aws');
+const { getLastMoment } = require('./helpers/moment');
 
 // Use body-parser middleware
 app.use(bodyParser.urlencoded({extended:false}));
@@ -86,7 +87,8 @@ const hbs = exphbs.create({
       } else {
         return opts.inverse(this);
       }
-    }
+    },
+    getLastMoment:getLastMoment
   }
 });
 
