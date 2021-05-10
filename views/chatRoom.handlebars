@@ -5,34 +5,30 @@
       <img src="{{chat.receiver.image}}" class="chatroom-users rounded-circle img-thumbnail">
     </h3>
 
+    <hr>
+
     <div id="messages">
 
       {{#each chat}}
       {{#each chats}}
       {{#if receiverMessage}}
         <div class="d-flex mb-3">
-          <div class="flex-shrink-0">
-            <img src="{{receiverName.image}}" class="chatroom-users rounded-circle img-thumbnail">
-          </div>
-          <div class="flex-grow-1 ms-3">
+          <div class="flex-grow-1 ms-3 text-end mr-4 p-2 dialog receiver">
             <p><strong>{{receiverMessage}}</strong></p>
             <small>{{date}}</small>
           </div>
+          <div class="flex-shrink-0 ml-4">
+            <img src="{{receiverName.image}}" class="chatroom-users rounded-circle img-thumbnail">
+          </div>
         </div>
       {{/if}}
-      {{/each}}
-      {{/each}}
-
-      <hr>
       
-      {{#each chat}}
-      {{#each chats}}
       {{#if senderMessage}}
         <div class="d-flex mb-3">
           <div class="flex-shrink-0">
             <img src="{{senderName.image}}" class="chatroom-users rounded-circle img-thumbnail">
           </div>
-          <div class="flex-grow-1 ms-3">
+          <div class="flex-grow-1 ms-3 p-2 dialog sender">
             <p><strong>{{senderMessage}}</strong></p>
             <small>{{date}}</small>
           </div>
