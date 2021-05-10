@@ -328,14 +328,14 @@ app.get('/startChat/:id', requireLogin, (req, res) => {
       chat.receiverRead = true;
       chat.senderRead = false;
       chat.date = new Date();
-      chat.save((err, chat) => {
+      chat.save((err,chat) => {
         if (err) {
           throw err;
         }
         if (chat) {
           res.redirect(`/chat/${chat._id}`);
         }
-      });
+      })
     } else {
       Chat.findOne({sender:req.user._id, receiver:req.params.id})
       .then((chat) => {
@@ -350,7 +350,7 @@ app.get('/startChat/:id', requireLogin, (req, res) => {
             if (chat) {
               res.redirect(`/chat/${chat._id}`);
             }
-          });
+          })
         } else {
           const newChat = {
             sender: req.user._id,
@@ -358,7 +358,7 @@ app.get('/startChat/:id', requireLogin, (req, res) => {
             senderRead: true,
             receiverRead: false,
             date: new Date()
-          };
+          }
           new Chat(newChat).save((err, chat) => {
             if (err) {
               throw err;
@@ -366,12 +366,12 @@ app.get('/startChat/:id', requireLogin, (req, res) => {
             if (chat) {
               res.redirect(`/chat/${chat._id}`);
             }
-          });
+          })
         }
-      });
+      })
     }
-  });
-});
+  })
+})
 
 // Display Chat Room
 app.get('/chat/:id', requireLogin, (req, res) => {
@@ -387,14 +387,15 @@ app.get('/chat/:id', requireLogin, (req, res) => {
         title: 'Chat',
         user: user,
         chat: chat
-      });
-    });
-  });
-});
+      })
+    })
+  })
+})
 
 // Handle chat message post
 app.post('/chat/:id', requireLogin, (req, res) => {
-  Chat.findOne({ _id: req.params.id })
+  Chat.findOne({ _id: req.params.id, sender: req.user._id })
+  .sort({ date: 'desc' })
   .populate('sender')
   .populate('receiver')
   .populate('chats.senderName')
@@ -407,8 +408,8 @@ app.post('/chat/:id', requireLogin, (req, res) => {
 
       const newChat = {
         senderName: req.user._id,
-        receiverName: chat.receiver._id,
         senderRead: true,
+        receiverName: chat.receiver._id,
         receiverRead: false,
         date: new Date(),
         senderMessage: req.body.chat
@@ -420,7 +421,8 @@ app.post('/chat/:id', requireLogin, (req, res) => {
           throw err;
         }
         if (chat) {
-          Chat.findOne({ _id: chat._id })
+          Chat.findOne({_id:chat._id})
+          .sort({ date:'desc' })
           .populate('sender')
           .populate('receiver')
           .populate('chats.senderName')
@@ -429,7 +431,7 @@ app.post('/chat/:id', requireLogin, (req, res) => {
             User.findById({_id:req.user._id})
             .then((user) => {
               // We will charge client for each message
-              user.wallet = user.wallet -1;
+              user.wallet = user.wallet - 1;
               user.save((err, user) => {
                 if (err) {
                   throw err;
@@ -439,67 +441,71 @@ app.post('/chat/:id', requireLogin, (req, res) => {
                     title: 'Chat',
                     chat: chat,
                     user: user
-                  });
+                  })
                 }
-              });
-            });
-          });
-        } else {
-          Chat.findOne({ _id: req.params.id })
-          .populate('sender')
-          .populate('receiver')
-          .populate('chats.senderName')
-          .populate('chats.receiverName')
-          .then((chat) => {
-            chat.senderRead = true;
-            chat.receiverRead = false;
-            chat.date = new Date();
-
-            const newChat = {
-              senderName: chat.sender._id,
-              receiverName: req.user._id,
-              senderRead: false,
-              receiverRead: true,
-              receiverMessage: req.body.chat,
-              date: new Date()
-            };
-            chat.chats.push(newChat);
-            chat.save((err, chat) => {
-              if (err) {
-                throw err;
-              }
-              if (chat) {
-                Chat.findOne({_id:chat._id})
-                .populate('sender')
-                .populate('receiver')
-                .populate('chats.senderName')
-                .populate('chats.receiverName')
-                .then((chat) => {
-                  User.findById({_id:req.user._id})
-                  .then((user) => {
-                    user.wallet = user.wallet - 1;
-                    user.save((err, user) => {
-                      if (err) {
-                        throw err;
-                      }
-                      if (user) {
-                        res.render('chatRoom', {
-                          title: 'Chat',
-                          user: user,
-                          chat: chat
-                        })
-                      }
-                    });
-                  });
-                });
-              }
-            });
-          });
+              })
+            })
+          })
         }
-      });
+      })
     }
-  });
-});
+    // Receiver sends message back
+    else {
+      Chat.findOne({_id:req.params.id, receiver:req.user._id})
+      .sort({date:'desc' })
+      .populate('sender')
+      .populate('receiver')
+      .populate('chats.senderName')
+      .populate('chats.receiverName')
+      .then((chat) => {
+        chat.senderRead = true;
+        chat.receiverRead = false;
+        chat.date = new Date();
+
+        const newChat = {
+          senderName: chat.sender._id,
+          senderRead: false,
+          receiverName: req.user._id,
+          receiverRead: true,
+          date: new Date(),
+          receiverMessage: req.body.chat
+        }
+        chat.chats.push(newChat)
+        chat.save((err,chat) => {
+          if (err) {
+            throw err;
+          }
+          if (chat) {
+            Chat.findOne({_id:chat._id})
+            .sort({date:'desc'})
+            .populate('sender')
+            .populate('receiver')
+            .populate('chats.senderName')
+            .populate('chats.receiverName')
+            .then((chat) => {
+              User.findById({_id:req.user._id})
+              .then((user) => {
+                user.wallet = user.wallet - 1;
+                user.save((err,user) => {
+                  if (err) {
+                    throw err;
+                  }
+                  if (user) {
+                    res.render('chatRoom', {
+                      title: 'Chat',
+                      user:user,
+                      chat:chat
+                    })
+                  }
+                })
+              })
+            })
+          }
+        })
+      })
+    }
+  })
+})
 
 app.get('/logout', (req, res) => {
   User.findById({_id:req.user._id})

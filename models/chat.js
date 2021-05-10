@@ -38,6 +38,9 @@ const chatSchema = new Schema({
       type: Schema.Types.ObjectId,
       ref: 'User'
     },
+    receiverMessage: {
+      type: String
+    },
     receiverRead: {
       type: Boolean,
       default: false

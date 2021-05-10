@@ -5,39 +5,40 @@
       <img src="{{chat.receiver.image}}" class="chatroom-users rounded-circle img-thumbnail">
     </h3>
 
-    {{#each chat}}
-      {{#each chats}}
-        {{#if receiverName}}
-          <div class="d-flex">
-            <div class="flex-shrink-0">
-              <img src="{{receiverName.image}}" class="chatroom-users rounded-circle img-thumbnail">
-            </div>
-            <div class="flex-grow-1 ms-3">
-              <h5>{{receiverMessage}}</h5>
-              <small>{{date}}</small>
-            </div>
-          </div>
-        {{/if}}
-      {{/each}}
-    {{/each}}
-
-    <hr>
-
     <div id="messages">
+
       {{#each chat}}
-        {{#each chats}}
-          {{#if senderName}}
-            <div class="d-flex">
-              <div class="flex-shrink-0">
-                <img src="{{senderName.image}}" class="chatroom-users rounded-circle img-thumbnail">
-              </div>
-              <div class="flex-grow-1 ms-3">
-                <h5>{{senderMessage}}</h5>
-                <small>{{date}}</small>
-              </div>
-            </div>
-          {{/if}}
-        {{/each}}
+      {{#each chats}}
+      {{#if receiverMessage}}
+        <div class="d-flex mb-3">
+          <div class="flex-shrink-0">
+            <img src="{{receiverName.image}}" class="chatroom-users rounded-circle img-thumbnail">
+          </div>
+          <div class="flex-grow-1 ms-3">
+            <p><strong>{{receiverMessage}}</strong></p>
+            <small>{{date}}</small>
+          </div>
+        </div>
+      {{/if}}
+      {{/each}}
+      {{/each}}
+
+      <hr>
+      
+      {{#each chat}}
+      {{#each chats}}
+      {{#if senderMessage}}
+        <div class="d-flex mb-3">
+          <div class="flex-shrink-0">
+            <img src="{{senderName.image}}" class="chatroom-users rounded-circle img-thumbnail">
+          </div>
+          <div class="flex-grow-1 ms-3">
+            <p><strong>{{senderMessage}}</strong></p>
+            <small>{{date}}</small>
+          </div>
+        </div>
+      {{/if}}
+      {{/each}}
       {{/each}}
     </div>
 
