@@ -15,6 +15,7 @@ const formidable = require('formidable');
 const Message = require('./models/message');
 const User = require('./models/user');
 const Chat = require('./models/chat');
+const Smile = require('./models/smile');
 
 const app = express();
 
