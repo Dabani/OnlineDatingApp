@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col-sm"></div>
-  <div class="col-sm-6 my-4 card-body shad">
+  <div class="col-sm-10 my-4 card-body shad">
     <div class="row">
 
       {{#each singles}}
@@ -9,21 +9,25 @@
             {{#if online}}
             <div class="card">
               <img src="{{image}}" class="card-img-top" alt="...">
-              <div class="card-body pt-0">
-                <div class="row">
+              <div class="card-body pt-2 px-0">
+                <div class="row px-0">
 
-                  <div class="col float-left lead">
-                    <a href="/userProfile/{{_id}}">
+                  <div class="col-sm-10 float-left">
+                    <a href="/userProfile/{{_id}}" class="btn btn-outline-primary card-link">
                       <i class="bi bi-file-person" data-bs-toggle="tooltip" data-bs-placement="top" title="Go to Profile"></i>
                     </a>
 
-                    <a href="/startChat/{{_id}}">
+                    <a href="/startChat/{{_id}}" class="btn btn-outline-info card-link">
                       <i class="bi bi-chat-text" data-bs-toggle="tooltip" data-bs-placement="top" title="Start Chat"></i>
+                    </a>
+
+                    <a href="/sendSmile/{{_id}}" class="btn btn-outline-success card-link">
+                      <i class="bi bi-emoji-smile" data-bs-toggle="tooltip" data-bs-placement="top" title="Send Smile"></i>
                     </a>
                   </div>
 
-                  <div class="col float-right text-end lead">
-                    <i class="bi bi-circle-fill text-success"><span class="px-1"><small>Online</small> </span></i>
+                  <div class="col-sm-2 float-right text-end lead">
+                    <i class="bi bi-circle-fill text-success" data-bs-toggle="tooltip" data-bs-placement="top" title="Online"></i>
                   </div>
 
                 </div>
@@ -32,21 +36,25 @@
             {{else}}
             <div class="card">
               <img src="{{image}}" class="card-img-top" alt="...">
-              <div class="card-body pt-0">
-                <div class="row">
+              <div class="card-body pt-2 px-0">
+                <div class="row px-0">
 
-                  <div class="col float-left lead">
-                    <a href="/userProfile/{{_id}}">
+                  <div class="col-sm-10 float-left">
+                    <a href="/userProfile/{{_id}}" class="btn btn-outline-primary card-link">
                       <i class="bi bi-file-person" data-bs-toggle="tooltip" data-bs-placement="top" title="Go to Profile"></i>
                     </a>
 
-                    <a href="/startChat/{{_id}}">
+                    <a href="/startChat/{{_id}}" class="btn btn-outline-info card-link">
                       <i class="bi bi-chat-text" data-bs-toggle="tooltip" data-bs-placement="top" title="Start Chat"></i>
+                    </a>
+
+                    <a href="/sendSmile/{{_id}}" class="btn btn-outline-success card-link">
+                      <i class="bi bi-emoji-smile" data-bs-toggle="tooltip" data-bs-placement="top" title="Send Smile"></i>
                     </a>
                   </div>
 
-                  <div class="col float-right text-end lead">
-                    <i class="bi bi-circle-fill text-danger"><span class="px-1"><small>Offline</small></span></i>
+                  <div class="col-sm-2 float-right text-end lead">
+                    <i class="bi bi-circle-fill text-danger" data-bs-toggle="tooltip" data-bs-placement="top" title="Offline"></i>
                   </div>
 
                 </div>
