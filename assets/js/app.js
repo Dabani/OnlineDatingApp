@@ -32,3 +32,13 @@ var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggl
 var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
   return new bootstrap.Tooltip(tooltipTriggerEl)
 })
+
+// Smile notification icon
+$(function(){
+  setInterval(function(){
+    $('.smile').attr('style','color:red');
+  },10);
+  setInterval(function(){
+    $('.smile').attr('style', 'color:white');
+  },30);
+});
