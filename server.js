@@ -549,9 +549,17 @@ app.get('/showSmile/:id', requireLogin, (req, res) => {
   .populate('sender')
   .populate('receiver')
   .then((smile) => {
-    res.render('smile/showSmile', {
-      title: 'New Smile',
-      smile:smile
+    smile.receiverReceived = true;
+    smile.save((err, smile) => {
+      if (err) {
+        throw err;
+      }
+      if (smile) {
+        res.render('smile/showSmile', {
+          title: 'New Smile',
+          smile: smile
+        });
+      }
     });
   });
 });
