@@ -150,10 +150,17 @@ app.get('/profile', requireLogin, (req, res) => {
         } else {
           Smile.findOne({receiver:req.user._id, receiverReceived:false})
           .then((newSmile) => {
-            res.render('profile', {
-              title: 'Profile',
-              user: user,
-              newSmile:newSmile
+            Chat.findOne({$or:[
+              {receiver:req.user._id, receiverRead:false},
+              {sender:req.user._id,senderRead:false}
+            ]})
+            .then((unread) => {
+              res.render('profile', {
+                title: 'Profile',
+                user: user,
+                newSmile: newSmile,
+                unread: unread
+              });
             });
           });
         }
