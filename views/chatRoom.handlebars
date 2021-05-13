@@ -17,13 +17,13 @@
       {{#each chats}}
       {{#if receiverMessage}}
         <div class="d-flex mb-3">
-          <div class="flex-grow-1 ms-3 text-end mr-4 p-2 dialog receiver">
+          <div class="flex-grow-1 text-end p-2 dialog receiver">
             <p><strong>{{receiverMessage}}</strong></p>
             <small>{{getLastMoment date 'hour'}}</small>
           </div>
-          <div class="flex-shrink-0 ml-4">
+          <div class="flex-shrink-1">
             <a href="/userProfile/{{receiverName._id}}">
-              <img src="{{receiverName.image}}" class="chatroom-users rounded-circle img-thumbnail">
+              <img src="{{receiverName.image}}" class="me-2 chatroom-users rounded-circle img-thumbnail">
             </a>
           </div>
         </div>
@@ -36,7 +36,7 @@
               <img src="{{senderName.image}}" class="chatroom-users rounded-circle img-thumbnail">
             </a>
           </div>
-          <div class="flex-grow-1 ms-3 p-2 dialog sender">
+          <div class="flex-grow-1 ms-3 ml-4 p-2 dialog sender">
             <p><strong>{{senderMessage}}</strong></p>
             <small>{{getLastMoment date 'hour'}}</small>
           </div>

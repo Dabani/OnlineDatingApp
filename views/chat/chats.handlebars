@@ -1,0 +1,34 @@
+{{#each received}}
+  <div class="d-flex my-3 shad p-3">
+    <div class="flex-shrink-0">
+      <img src="{{sender.image}}" class="align-self-start mr-3 rounded-circle img-thumbnail">
+    </div>
+    
+    <div class="flex-grow-1 ms-3">
+      <p><strong class="mt-0">{{sender.fullname}}</strong></p>
+      {{#if receiverRead}}
+        <i class="bi bi-envelope-open lead"></i>
+      {{else}}
+        <i class="bi bi-envelope-fill lead"></i>
+      {{/if}}
+      <small>{{getLastMoment date 'hour'}}</small>
+    </div>
+  </div>
+{{/each}}
+
+{{#each sent}}
+  <div class="d-flex my-3 shad p-3">
+    <div class="flex-shrink-0">
+      <img src="{{receiver.image}}" class="align-self-start mr-3 rounded-circle img-thumbnail">
+    </div>
+    <div class="flex-grow-1 ms-3">
+      <p><strong class="mt-0">{{receiver.fullname}}</strong></p>
+      {{#if senderRead}}
+        <i class="bi bi-envelope-open lead"></i>
+      {{else}}
+        <i class="bi bi-envelope-fill lead"></i>
+      {{/if}}
+      <small>{{getLastMoment date 'hour'}}</small>
+    </div>
+  </div>
+{{/each}}
