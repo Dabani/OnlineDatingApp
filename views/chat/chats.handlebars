@@ -1,11 +1,15 @@
 {{#each received}}
   <div class="d-flex my-3 shad p-3">
     <div class="flex-shrink-0">
-      <img src="{{sender.image}}" class="align-self-start mr-3 rounded-circle img-thumbnail">
+      <a href="startChat/{{sender._id}}">
+        <img src="{{sender.image}}" class="align-self-start mr-3 rounded-circle img-thumbnail">
+      </a>
     </div>
     
     <div class="flex-grow-1 ms-3">
-      <p><strong class="mt-0">{{sender.fullname}}</strong></p>
+      <a href="/startChat/{{sender._id}}">
+        <p><strong class="mt-0">{{sender.fullname}}</strong></p>
+      </a>
       {{#if receiverRead}}
         <i class="bi bi-envelope-open lead"></i>
       {{else}}
@@ -19,10 +23,14 @@
 {{#each sent}}
   <div class="d-flex my-3 shad p-3">
     <div class="flex-shrink-0">
-      <img src="{{receiver.image}}" class="align-self-start mr-3 rounded-circle img-thumbnail">
+      <a href="/startChat/{{receiver._id}}">
+        <img src="{{receiver.image}}" class="align-self-start mr-3 rounded-circle img-thumbnail">
+      </a>
     </div>
     <div class="flex-grow-1 ms-3">
-      <p><strong class="mt-0">{{receiver.fullname}}</strong></p>
+      <a href="/startChat/{{receiver._id}}">
+        <p><strong class="mt-0">{{receiver.fullname}}</strong></p>
+      </a>
       {{#if senderRead}}
         <i class="bi bi-envelope-open lead"></i>
       {{else}}
