@@ -1,42 +1,71 @@
-{{#each received}}
-  <div class="d-flex my-3 shad p-3">
-    <div class="flex-shrink-0">
-      <a href="startChat/{{sender._id}}">
-        <img src="{{sender.image}}" class="align-self-start mr-3 rounded-circle img-thumbnail">
-      </a>
-    </div>
-    
-    <div class="flex-grow-1 ms-3">
-      <a href="/startChat/{{sender._id}}">
-        <p><strong class="mt-0">{{sender.fullname}}</strong></p>
-      </a>
-      {{#if receiverRead}}
-        <i class="bi bi-envelope-open lead"></i>
-      {{else}}
-        <i class="bi bi-envelope-fill lead"></i>
-      {{/if}}
-      <small>{{getLastMoment date 'hour'}}</small>
-    </div>
+<div class="row">
+  <div class="col-sm-6 my-3">
+    <h3 class="card-header shad">Incoming</h3>
+    {{#each received}}
+      <div class="d-flex my-3 shad p-3">
+        <div class="flex-shrink-0">
+          <a href="startChat/{{sender._id}}">
+            <img src="{{sender.image}}" class="align-self-start mr-3 rounded-circle img-thumbnail">
+          </a>
+        </div>
+        
+        <div class="flex-grow-1 ms-3">
+          <a href="/startChat/{{sender._id}}">
+            <p><strong class="mt-0">{{sender.fullname}}</strong></p>
+          </a>
+          <div class="row">
+            <div class="col-10">
+              {{#if receiverRead}}
+                <i class="bi bi-envelope-open lead"></i>
+              {{else}}
+                <i class="bi bi-envelope-fill lead"></i>
+              {{/if}}
+              <small>{{getLastMoment date 'hour'}}</small>
+            </div>
+            <div class="col-2 float-right text-end">
+              <a href="/deleteChat/{{_id}}" class="text-danger">
+                <i class="bi bi-trash lead"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    {{else}}
+      <p class="text-danger p-4 my-3 shad">No Chat found!</p>
+    {{/each}}
   </div>
-{{/each}}
-
-{{#each sent}}
-  <div class="d-flex my-3 shad p-3">
-    <div class="flex-shrink-0">
-      <a href="/startChat/{{receiver._id}}">
-        <img src="{{receiver.image}}" class="align-self-start mr-3 rounded-circle img-thumbnail">
-      </a>
-    </div>
-    <div class="flex-grow-1 ms-3">
-      <a href="/startChat/{{receiver._id}}">
-        <p><strong class="mt-0">{{receiver.fullname}}</strong></p>
-      </a>
-      {{#if senderRead}}
-        <i class="bi bi-envelope-open lead"></i>
-      {{else}}
-        <i class="bi bi-envelope-fill lead"></i>
-      {{/if}}
-      <small>{{getLastMoment date 'hour'}}</small>
-    </div>
+  <div class="col-sm-6 my-3">
+    <h3 class="card-header shad">Outgoing</h3>
+    {{#each sent}}
+      <div class="d-flex my-3 shad p-3">
+        <div class="flex-shrink-0">
+          <a href="/startChat/{{receiver._id}}">
+            <img src="{{receiver.image}}" class="align-self-start mr-3 rounded-circle img-thumbnail">
+          </a>
+        </div>
+        <div class="flex-grow-1 ms-3">
+          <a href="/startChat/{{receiver._id}}">
+            <p><strong class="mt-0">{{receiver.fullname}}</strong></p>
+          </a>
+          <div class="row">
+            <div class="col-10">
+              {{#if senderRead}}
+                <i class="bi bi-envelope-open lead"></i>
+              {{else}}
+                <i class="bi bi-envelope-fill lead"></i>
+              {{/if}}
+              <small>{{getLastMoment date 'hour'}}</small>
+            </div>
+            <div class="col-2 float-right text-end">
+              <a href="/deleteChat/{{_id}}" class="text-danger">
+                <i class="bi bi-trash lead"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    {{else}}
+      <p class="text-danger my-3 p-4 shad">No Chat found!</p>
+    {{/each}}
   </div>
-{{/each}}
+</div>
