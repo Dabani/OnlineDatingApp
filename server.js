@@ -525,6 +525,30 @@ app.post('/chat/:id', requireLogin, (req, res) => {
   })
 })
 
+app.get('/chats', requireLogin, (req, res) => {
+  Chat.find({receiver: req.user._id})
+  .populate('sender')
+  .populate('receiver')
+  .populate('chats.senderName')
+  .populate('chats.receiverName')
+  .sort({date:'desc'})
+  .then((received) => {
+    Chat.find({ sender: req.user._id })
+    .populate('sender')
+    .populate('receiver')
+    .populate('chats.senderName')
+    .populate('chats.receiverName')
+    .sort({ date: 'desc' })
+    .then((sent) => {
+      res.render('chat/chats', {
+        title: 'Chat History',
+        received:received,
+        sent: sent
+      })
+    })
+  })
+});
+
 // Get route to send smile
 app.get('/sendSmile/:id', requireLogin, (req, res) => {
   const newSmile = {
