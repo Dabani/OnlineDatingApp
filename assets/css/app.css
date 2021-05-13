@@ -87,6 +87,7 @@ a {
   height: 12em;
 }
 
-.smile {
+.smile,
+.letter {
   font-size: 2em;
 }

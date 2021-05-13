@@ -42,3 +42,13 @@ $(function(){
     $('.smile').attr('style', 'color:white');
   },30);
 });
+
+// Message notification icon
+$(function () {
+  setInterval(function () {
+    $('.letter').attr('style', 'color:green');
+  }, 10);
+  setInterval(function () {
+    $('.letter').attr('style', 'color:white');
+  }, 30);
+});
