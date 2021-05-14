@@ -26,6 +26,7 @@ const Keys = require('./config/keys');
 const { requireLogin, ensureGuest } = require('./helpers/auth');
 const { uploadImage } = require('./helpers/aws');
 const { getLastMoment } = require('./helpers/moment');
+const { walletChecker } = require('./helpers/wallet');
 
 // Use body-parser middleware
 app.use(bodyParser.urlencoded({extended:false}));
@@ -411,7 +412,7 @@ app.get('/chat/:id', requireLogin, (req, res) => {
 })
 
 // Handle chat message post
-app.post('/chat/:id', requireLogin, (req, res) => {
+app.post('/chat/:id', requireLogin, walletChecker, (req, res) => {
   Chat.findOne({ _id: req.params.id, sender: req.user._id })
   .sort({ date: 'desc' })
   .populate('sender')
