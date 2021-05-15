@@ -2,7 +2,7 @@
 
   <div class="col-sm-8 offset-sm-2 my-4" id="profile">
 
-    <div class="card shad mb-3">
+    <div class="card bg-trans text-dark shad mb-3">
       <div class="row g-0">
         <div class="col-md-4">
           <img src="{{oneUser.image}}" class="img-fluid" alt="{{oneUser.fullname}}">
@@ -47,7 +47,7 @@
             </a>
             {{#if smile}}
             <a href="/deleteSmile/{{oneUser._id}}" class="btn btn-outline-danger card-link mb-3" data-bs-toggle="tooltip" data-bs-placement="top" title="Kuraho Inseko">
-              <i class="bi bi-emoji-smile"></i>
+              <i class="bi bi-emoji-smile newsmile"></i>
             </a>
             {{else}}
             <a href="/sendSmile/{{oneUser._id}}" class="btn btn-success card-link mb-3" data-bs-toggle="tooltip" data-bs-placement="top" title="Ohereza Inseko">

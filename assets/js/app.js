@@ -52,3 +52,12 @@ $(function () {
     $('.letter').attr('style', 'color:white');
   }, 30);
 });
+
+$(function () {
+  setInterval(function () {
+    $('.newsmile').attr('style', 'color:white');
+  }, 10);
+  setInterval(function () {
+    $('.newsmile').attr('style', 'color:red');
+  }, 30);
+})
