@@ -10,6 +10,7 @@ const session = require('express-session');
 const flash = require('connect-flash');
 const bcrypt = require('bcryptjs');
 const formidable = require('formidable');
+const moment = require('moment');
 
 // Load models
 const Message = require('./models/message');
@@ -93,7 +94,14 @@ const hbs = exphbs.create({
         return opts.inverse(this);
       }
     },
-    getLastMoment:getLastMoment
+    getLastMoment: getLastMoment,
+    dateFormat: function (date, options) {
+      const formatToUse = (arguments[1] && arguments[1].hash && arguments[1].hash.format) || "DD/MM/YYYY"
+      return moment(date).format(formatToUse);
+    },
+    now: function() {
+      return new Date();
+    }
   }
 });
 
@@ -112,19 +120,19 @@ app.use(express.static('assets'));
 
 app.get('/', ensureGuest, (req,res) => {
   res.render('home',{
-    "title": "Home"
+    title: 'Ikaze'
   });
 });
 
 app.get('/about', ensureGuest, (req, res) => {
   res.render('about', {
-    "title": "About"
+    title: 'Abo turi bo'
   });
 });
 
 app.get('/contact', ensureGuest, (req, res) => {
   res.render('contact', {
-    "title": "Contact"
+    title: 'Twandikire'
   });
 });
 
@@ -160,7 +168,7 @@ app.get('/profile', requireLogin, (req, res) => {
             ]})
             .then((unread) => {
               res.render('profile', {
-                title: 'Profile',
+                title: 'Imyirondoro',
                 user: user,
                 newSmile: newSmile,
                 unread: unread
@@ -192,7 +200,7 @@ app.post('/updateProfile', requireLogin, (req, res) => {
 
 app.get('/askToDelete', requireLogin, (req, res) => {
   res.render('askToDelete', {
-    title: 'Delete'
+    title: 'Gufunga urubuga'
   });
 });
 
@@ -200,14 +208,14 @@ app.get('/deleteAccount', requireLogin, (req, res) => {
   User.deleteOne({_id:req.user._id})
   .then(() => {
     res.render('accountDeleted', {
-      title: 'Deleted'
+      title: 'Rwafunzwe'
     });
   });
 });
 
 app.get('/newAccount', (req, res) => {
   res.render('newAccount', {
-    title: 'Signup'
+    title: 'Kwibaruza'
   });
 });
 
@@ -215,17 +223,17 @@ app.post('/signup', (req, res) => {
   let errors = [];
 
   if (req.body.password !== req.body.password2) {
-    errors.push({ text: 'Password does NOT match' });
+    errors.push({ text: `Amagambo y'ibanga ntabwo ahuye` });
   }
 
   if (req.body.password.length < 5) {
-    errors.push({ text: 'Password must be at least 5 characters' });
+    errors.push({ text: `Ijambo ry'ibanga rigomba kugira byibura inyuguti 5` });
   }
 
   if (errors.length > 0) {
     res.render('newAccount', {
       errors:errors,
-      title: 'Error',
+      title: 'Ikosa',
       fullname: req.body.username,
       email: req.body.email,
       password: req.body.password,
@@ -236,9 +244,9 @@ app.post('/signup', (req, res) => {
     .then((user) => {
       if (user) {
         let errors = [];
-        errors.push({text: 'Email already exists'});
+        errors.push({text: `Iyi Imeyili ifite undi uyikoresha!`});
         res.render('newAccount', {
-          title: 'Signup',
+          title: 'Kwibaruza',
           errors:errors
         });
       } else {
@@ -255,7 +263,7 @@ app.post('/signup', (req, res) => {
           }
           if (user) {
             let success = [];
-            success.push({text: 'You have successfully created account. You can now login!'});
+            success.push({text: `Wibaruje neza, injira ku rubuga rwawe!`});
             res.render('home', {
               success: success
             });
@@ -282,7 +290,7 @@ app.get('/loginErrors', (req, res) => {
 // handle get route
 app.get('/uploadImage', requireLogin, (req, res) => {
   res.render('uploadImage', {
-    title: 'Upload'
+    title: 'Kohereza'
   });
 });
 
@@ -309,7 +317,7 @@ app.post('/uploadFile', requireLogin, uploadImage.any(), (req, res) => {
     console.log(err);
   });
   form.on('end', () => {
-    console.log('Image upload is successfull ...');
+    console.log(`Ishusho yakiriwe ku rubuga ...`);
   });
   form.parse(req);
 });
@@ -320,7 +328,7 @@ app.get('/singles', requireLogin, (req, res) => {
   .sort({date:'desc'})
   .then((singles) => {
     res.render('singles', {
-      title: 'Singles',
+      title: 'Inshuti',
       singles: singles
     });
   }).catch((err) => {
@@ -334,7 +342,7 @@ app.get('/userProfile/:id', requireLogin, (req, res) => {
     Smile.findOne({receiver:req.params.id})
     .then((smile) => {
       res.render('userProfile', {
-        title: 'Profile',
+        title: 'Imyirondoro',
         oneUser: user,
         smile: smile
       });
@@ -406,7 +414,7 @@ app.get('/chat/:id', requireLogin, (req, res) => {
     User.findOne({_id:req.user._id})
     .then((user) => {
       res.render('chatRoom', {
-        title: 'Chat',
+        title: 'Ikiganiro',
         user: user,
         chat: chat
       })
@@ -460,7 +468,7 @@ app.post('/chat/:id', requireLogin, walletChecker, (req, res) => {
                 }
                 if (user) {
                   res.render('chatRoom', {
-                    title: 'Chat',
+                    title: 'Ikiganiro',
                     chat: chat,
                     user: user
                   })
@@ -514,7 +522,7 @@ app.post('/chat/:id', requireLogin, walletChecker, (req, res) => {
                   }
                   if (user) {
                     res.render('chatRoom', {
-                      title: 'Chat',
+                      title: 'Ikiganiro',
                       user:user,
                       chat:chat
                     })
@@ -545,7 +553,7 @@ app.get('/chats', requireLogin, (req, res) => {
     .sort({ date: 'desc' })
     .then((sent) => {
       res.render('chat/chats', {
-        title: 'Chat History',
+        title: 'Urutonde rw\'ibiganiro',
         received:received,
         sent: sent
       })
@@ -573,26 +581,27 @@ app.post('/charge10dollars', requireLogin, (req, res) => {
       amount: amount,
       description: 'Ubutumwa 200 ku madolari 10',
       currency: 'usd',
-      customer: customer,
+      customer: customer.id,
       receipt_email: customer.email
-    }, (err, charge) => {
-      if (err) {
-        throw err;
-      }
+    }).then((charge) => {
       if (charge) {
         User.findById({_id:req.user._id})
         .then((user) => {
           user.wallet += 200;
           user.save()
           .then(() => {
-            res.render('success', {
-              title: 'Ubutumwa 200',
+            res.render('payment/success', {
+              title: 'Ubwishyu',
               charge: charge
-            })
+            });
           });
         });
       }
-    });
+    }).catch((err) => {
+      console.log(err);
+    })
+  }).catch((err) => {
+    console.log(err);
   });
 });
 
@@ -634,7 +643,7 @@ app.get('/showSmile/:id', requireLogin, (req, res) => {
       }
       if (smile) {
         res.render('smile/showSmile', {
-          title: 'New Smile',
+          title: 'Inseko nshya',
           smile: smile
         });
       }
@@ -673,12 +682,12 @@ app.post('/contactUs', (req, res) => {
       Message.find({}).then((messages) => {
         if(messages){
           res.render('newmessage', {
-            title: "Sent",
+            title: "Ubutumwa bwoherejwe",
             messages: messages
           });
         } else {
           res.render('nomessage', {
-            title: "Not found"
+            title: "Nta butumwa twabonye"
           });
         }
       });

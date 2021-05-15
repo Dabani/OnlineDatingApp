@@ -17,27 +17,27 @@
                   <td><p class="card-text">{{oneUser.email}}</p></td>
                 </tr>
                 <tr>
-                  <th class="mr-3"><i class="bi bi-person-bounding-box"></i> Gender</th>
+                  <th class="mr-3"><i class="bi bi-person-bounding-box"></i> Igitsina</th>
                   <td><p class="card-text">{{oneUser.gender}}</p></td>
                 </tr>
                 <tr>
-                  <th class="mr-3"><i class="bi bi-calendar"></i> Age</th>
+                  <th class="mr-3"><i class="bi bi-calendar"></i> Imyaka</th>
                   <td><p class="card-text">{{oneUser.age}}</p></td>
                 </tr>
                 <tr>
-                  <th class="mr-3"><i class="bi bi-file-earmark-richtext"></i> About</th>
+                  <th class="mr-3"><i class="bi bi-file-earmark-richtext"></i> Impamvu</th>
                   <td><p class="card-text">{{oneUser.about}}</p></td>
                 </tr>
                 <tr>
-                  <th class="mr-3"><i class="bi bi-flag"></i> Country</th>
+                  <th class="mr-3"><i class="bi bi-flag"></i> Igihugu</th>
                   <td><p class="card-text">{{oneUser.country}}</p></td>
                 </tr>
                 <tr>
-                  <th class="mr-3"><i class="bi bi-building"></i> City</th>
+                  <th class="mr-3"><i class="bi bi-building"></i> Umujyi</th>
                   <td><p class="card-text">{{oneUser.city}}</p></td>
                 </tr>
                 <tr>
-                  <th class="mr-3"><i class="bi bi-geo-alt"></i> Locality</th>
+                  <th class="mr-3"><i class="bi bi-geo-alt"></i> Umurenge</th>
                   <td><p class="card-text">{{oneUser.area}}</p></td>
                 </tr>
               </tbody>
@@ -46,11 +46,11 @@
               <i class="bi bi-chat-text"></i>
             </a>
             {{#if smile}}
-            <a href="/deleteSmile/{{oneUser._id}}" class="btn btn-outline-danger card-link mb-3" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete Smile">
+            <a href="/deleteSmile/{{oneUser._id}}" class="btn btn-outline-danger card-link mb-3" data-bs-toggle="tooltip" data-bs-placement="top" title="Kuraho Inseko">
               <i class="bi bi-emoji-smile"></i>
             </a>
             {{else}}
-            <a href="/sendSmile/{{oneUser._id}}" class="btn btn-success card-link mb-3" data-bs-toggle="tooltip" data-bs-placement="top" title="Send Smile">
+            <a href="/sendSmile/{{oneUser._id}}" class="btn btn-success card-link mb-3" data-bs-toggle="tooltip" data-bs-placement="top" title="Ohereza Inseko">
               <i class="bi bi-emoji-smile"></i>
             </a>
             {{/if}}

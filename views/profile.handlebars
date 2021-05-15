@@ -15,7 +15,7 @@
     <table class="my-4">
       <tbody>
         <tr>
-          <th class="mr-3"><i class="bi bi-person-badge"></i> Full name</th>
+          <th class="mr-3"><i class="bi bi-person-badge"></i> Amazina</th>
           <td><h5 class="card-title">{{user.fullname}}</h5></td>
         </tr>
         <tr>
@@ -23,42 +23,42 @@
           <td><p class="card-text">{{user.email}}</p></td>
         </tr>
         <tr>
-          <th class="mr-3"><i class="bi bi-person-bounding-box"></i> Gender</th>
+          <th class="mr-3"><i class="bi bi-person-bounding-box"></i> Igitsina</th>
           <td><p class="card-text">{{user.gender}}</p></td>
         </tr>
         <tr>
-          <th class="mr-3"><i class="bi bi-calendar"></i> Age</th>
+          <th class="mr-3"><i class="bi bi-calendar"></i> Imyaka</th>
           <td><p class="card-text">{{user.age}}</p></td>
         </tr>
         <tr>
-          <th class="mr-3"><i class="bi bi-file-earmark-richtext"></i> About</th>
+          <th class="mr-3"><i class="bi bi-file-earmark-richtext"></i> Impamvu</th>
           <td><p class="card-text">{{user.about}}</p></td>
         </tr>
         <tr>
-          <th class="mr-3"><i class="bi bi-flag"></i> Country</th>
+          <th class="mr-3"><i class="bi bi-flag"></i> Igihugu</th>
           <td><p class="card-text">{{user.country}}</p></td>
         </tr>
         <tr>
-          <th class="mr-3"><i class="bi bi-building"></i> City</th>
+          <th class="mr-3"><i class="bi bi-building"></i> Umujyi</th>
           <td><p class="card-text">{{user.city}}</p></td>
         </tr>
         <tr>
-          <th class="mr-3"><i class="bi bi-geo-alt"></i> Locality</th>
+          <th class="mr-3"><i class="bi bi-geo-alt"></i> Umurenge</th>
           <td><p class="card-text">{{user.area}}</p></td>
         </tr>
       </tbody>
     </table>
     <hr>
     <h4>
-      <i onclick="editProfile()" class="bi bi-pencil-square text-primary"> Edit</i>
-      <a href="/askToDelete" class="text-danger"><i class="bi bi-trash"> Delete</i></a>
+      <i onclick="editProfile()" class="bi bi-pencil-square text-primary"> Vugurura</i>
+      <a href="/askToDelete" class="text-danger"><i class="bi bi-trash"> Vanaho</i></a>
     </h4>
   </div>
 
   <div class="col-sm-4 my-3" id="profileEditor" style="display: none;">
     <form action="/updateProfile" method="POST">
       <div class="form-group row">
-        <label for="fullname" class="col-sm-4 col-form-label"><i class="bi bi-person-badge"></i> Fullname</label>
+        <label for="fullname" class="col-sm-4 col-form-label"><i class="bi bi-person-badge"></i> Amazina</label>
         <div class="col-sm-8">
           <input type="text" name="fullname" id="fullname" value="{{user.fullname}}" class="form-control">
       </div>
@@ -73,35 +73,35 @@
       </div>
 
       <div class="form-group row">
-        <label for="gender" class="col-sm-4 col-form-label"><i class="bi bi-person-bounding-box"></i> Gender</label>
+        <label for="gender" class="col-sm-4 col-form-label"><i class="bi bi-person-bounding-box"></i> Igitsina</label>
         <div class="col-sm-8">
           <select name="gender" id="gender" class="form-select" aria-label="Default select example">
             {{#if_eq user.gender ""}}
             <option value="" selected> -- </option>
             {{else}}
-            <option value="male" {{#if_eq user.gender "male"}}selected{{/if_eq}}>Male</option>
-            <option value="female" {{#if_eq user.gender "female"}}selected{{/if_eq}}>Female</option>
+            <option value="Gabo" {{#if_eq user.gender "Gabo"}}selected{{/if_eq}}>Gabo</option>
+            <option value="Gore" {{#if_eq user.gender "Gore"}}selected{{/if_eq}}>Gore</option>
             {{/if_eq}}
           </select>          
         </div>
       </div>
 
       <div class="form-group row">
-        <label for="age" class="col-sm-4 col-form-label"><i class="bi bi-calendar"></i> Age</label>
+        <label for="age" class="col-sm-4 col-form-label"><i class="bi bi-calendar"></i> Imyaka</label>
         <div class="col-sm-8">
           <input type="text" name="age" id="age" value="{{user.age}}" class="form-control">          
         </div>
       </div>
 
       <div class="form-group row">
-        <label for="about" class="col-sm-4 col-form-label"><i class="bi bi-file-earmark-richtext"></i> About</label>
+        <label for="about" class="col-sm-4 col-form-label"><i class="bi bi-file-earmark-richtext"></i> Impamvu</label>
         <div class="col-sm-8">
           <input type="text" name="about" id="about" value="{{user.about}}" class="form-control">          
         </div>
       </div>
 
       <div class="form-group row">
-        <label for="country" class="col-sm-4 col-form-label"><i class="bi bi-flag"></i> Country</label>
+        <label for="country" class="col-sm-4 col-form-label"><i class="bi bi-flag"></i> Igihugu</label>
         <div class="col-sm-8">
           <select name="country" id="country" class="form-select" aria-label="Default select example">
             {{#if_eq user.country ""}}
@@ -121,20 +121,20 @@
       </div>
 
       <div class="form-group row">
-        <label for="city" class="col-sm-4 col-form-label"><i class="bi bi-building"></i> City</label>
+        <label for="city" class="col-sm-4 col-form-label"><i class="bi bi-building"></i> Umujyi</label>
         <div class="col-sm-8">
           <input type="text" name="city" id="city" class="form-control" value="{{user.city}}">          
         </div>
       </div>
 
       <div class="form-group row">
-        <label for="area" class="col-sm-4 col-form-label"><i class="bi bi-geo-alt"></i> Locality</label>
+        <label for="area" class="col-sm-4 col-form-label"><i class="bi bi-geo-alt"></i> Umurenge</label>
         <div class="col-sm-8">
           <input type="text" name="area" id="area" class="form-control" value="{{user.area}}">          
         </div>
       </div>
 
-      <button type="submit" class="btn btn-warning my-3">Save</button>
+      <button type="submit" class="btn btn-warning my-3">Emeza</button>
     </form>
   </div>
 

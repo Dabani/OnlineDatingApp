@@ -1,16 +1,16 @@
-<nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark">
+<nav class="navbar sticky-top navbar-expand-lg navbar-dark">
   <div class="container-fluid">
     
     <a class="navbar-brand" href="/">
       <img src="./images/rambagiza.png" alt="RAMBAGIZA"  height="24">
     </a>
     {{#if newSmile}}
-      <a href="/showSmile/{{newSmile._id}}" class="mx-2"><i class="bi bi-emoji-smile smile" data-bs-toggle="tooltip" data-bs-placement="bottom" title="New Smile"></i></a>
+      <a href="/showSmile/{{newSmile._id}}" class="mx-2"><i class="bi bi-emoji-smile smile" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Inseko nshya"></i></a>
     {{else}}
       <a class="navbar-brand" href="#">{{title}}</a>
     {{/if}}
     {{#if unread}}
-      <a href="/chats"><i class="bi bi-envelope letter" data-bs-toggle="tooltip" data-bs-placement="bottom" title="New Message"></i></a>
+      <a href="/chats"><i class="bi bi-envelope letter" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Ubutumwa bushya"></i></a>
     {{/if}}
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -19,26 +19,26 @@
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         {{#if user}}
           <li class="nav-item">
-            <a class="nav-link" href="/singles"><i class="bi bi-people"></i> Singles</a>
+            <a class="nav-link" href="/singles"><i class="bi bi-people"></i> Inshuti</a>
           </li>
 
           <li class="nav-item">
-            <a class="nav-link" href="/profile"><i class="bi bi-person-lines-fill"></i> Profile</a>
+            <a class="nav-link" href="/profile"><i class="bi bi-person-lines-fill"></i> Umwirondoro</a>
           </li>
 
           <li class="nav-item">
-            <a class="nav-link" href="/chats"><i class="bi bi-chat-text"></i> Chat</a>
+            <a class="nav-link" href="/chats"><i class="bi bi-chat-text"></i> Ibiganiro</a>
           </li>
 
           <li class="nav-item">
-            <a class="nav-link" href="/logout"><i class="bi bi-box-arrow-right"></i> Logout</a>
+            <a class="nav-link" href="/logout"><i class="bi bi-box-arrow-right"></i> Gusohoka</a>
           </li>
         {{else}}
           <li class="nav-item">
-            <a class="nav-link" href="/about"><i class="bi bi-card-image"></i> About</a>
+            <a class="nav-link" href="/about"><i class="bi bi-card-image"></i> Abo turi bo</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/contact"><i class="bi bi-card-heading"></i>  Contact</a>
+            <a class="nav-link" href="/contact"><i class="bi bi-card-heading"></i> Twandikire</a>
           </li>
         {{/if}}
       </ul>
