@@ -1,6 +1,16 @@
 <div class="row">
   <div class="col-sm-4 offset-sm-4 my-4 p-4 shad">
-    <h4 class="text-danger">Payment required</h4>
+    <h3 class="text-danger">Payment required</h3>
     <p>Please make a payment to chat!</p>
+    <form action="/charge10dollars" method="post">
+      <script src="https://checkout.stripe.com/checkout.js"
+        class="stripe-button"
+        data-key="{{StripePublishableKey}}"
+        data-amount="1000"
+        data-name="Rambagiza"
+        data-description="widget"
+        data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
+        data-locale="auto" />
+    </form>
   </div>
 </div>
