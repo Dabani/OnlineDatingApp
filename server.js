@@ -563,7 +563,37 @@ app.get('/deleteChat/:id', requireLogin, (req, res) => {
 
 // Charge Client (payment)
 app.post('/charge10dollars', requireLogin, (req, res) => {
-
+  console.log(req.body);
+  const amount = 1000;
+  stripe.customers.create({
+    email: req.body.stripeEmail,
+    source: req.body.stripeToken
+  }).then((customer) => {
+    stripe.charges.create({
+      amount: amount,
+      description: 'Ubutumwa 200 ku madolari 10',
+      currency: 'usd',
+      customer: customer,
+      receipt_email: customer.email
+    }, (err, charge) => {
+      if (err) {
+        throw err;
+      }
+      if (charge) {
+        User.findById({_id:req.user._id})
+        .then((user) => {
+          user.wallet += 200;
+          user.save()
+          .then(() => {
+            res.render('success', {
+              title: 'Ubutumwa 200',
+              charge: charge
+            })
+          });
+        });
+      }
+    });
+  });
 });
 
 // Get route to send smile
