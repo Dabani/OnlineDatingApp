@@ -52,7 +52,3 @@ $(function () {
     $('.letter').attr('style', 'color:white');
   }, 30);
 });
-
-function now() {
-  return new Date()
-}

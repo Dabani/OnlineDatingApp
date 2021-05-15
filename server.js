@@ -605,6 +605,41 @@ app.post('/charge10dollars', requireLogin, (req, res) => {
   });
 });
 
+app.post('/charge20dollars', requireLogin, (req, res) => {
+  console.log(req.body);
+  const amount = 2000;
+  stripe.customers.create({
+    email: req.body.stripeEmail,
+    source: req.body.stripeToken
+  }).then((customer) => {
+    stripe.charges.create({
+      amount: amount,
+      description: 'Ubutumwa 500 ku madolari 20',
+      currency: 'usd',
+      customer: customer.id,
+      receipt_email: customer.email
+    }).then((charge) => {
+      if (charge) {
+        User.findById({ _id: req.user._id })
+          .then((user) => {
+            user.wallet += 500;
+            user.save()
+              .then(() => {
+                res.render('payment/success', {
+                  title: 'Ubwishyu',
+                  charge: charge
+                });
+              });
+          });
+      }
+    }).catch((err) => {
+      console.log(err);
+    })
+  }).catch((err) => {
+    console.log(err);
+  });
+});
+
 // Get route to send smile
 app.get('/sendSmile/:id', requireLogin, (req, res) => {
   const newSmile = {
