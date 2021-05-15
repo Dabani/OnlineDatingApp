@@ -1,15 +1,15 @@
 <div class="row">
-  <div class="col-sm-4 offset-sm-4 my-4 p-4 shad">
-    <h3 class="text-danger">Payment required</h3>
-    <p>Please make a payment to chat!</p>
+  <div class="col-sm-4 offset-sm-4 my-4 p-4 bg-trans text-center shad">
+    <h3 class="text-success">Ishyura amadolari 10$</h3>
+    <p class="text-dark">Ugure ubutumwa 200!</p>
     <form action="/charge10dollars" method="post">
       <script src="https://checkout.stripe.com/checkout.js"
         class="stripe-button"
         data-key="{{StripePublishableKey}}"
         data-amount="1000"
         data-name="Rambagiza"
-        data-description="widget"
-        data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
+        data-description="Kugura ubutumwa 200"
+        data-image="./images/logo.jpg"
         data-locale="auto" />
     </form>
   </div>

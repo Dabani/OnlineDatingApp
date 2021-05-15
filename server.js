@@ -22,6 +22,9 @@ const app = express();
 // Load keys file
 const Keys = require('./config/keys');
 
+// Load Stripe Module
+const stripe = require('stripe')(Keys.StripeSecretKey);
+
 // Load helpers
 const { requireLogin, ensureGuest } = require('./helpers/auth');
 const { uploadImage } = require('./helpers/aws');
@@ -556,6 +559,11 @@ app.get('/deleteChat/:id', requireLogin, (req, res) => {
   .then(() => {
     res.redirect('/chats');
   });
+});
+
+// Charge Client (payment)
+app.post('/charge10dollars', requireLogin, (req, res) => {
+
 });
 
 // Get route to send smile
