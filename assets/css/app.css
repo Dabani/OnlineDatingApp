@@ -1,3 +1,10 @@
+body {
+  background-image: url("../images/pexels-krishna-studio-5876920.jpg");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  color: white;
+}
+
 h1,
 h2,
 h3,
