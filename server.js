@@ -798,9 +798,22 @@ app.post('/createPost', requireLogin, (req, res) => {
     allowComments: allowComments,
     date: new Date()
   }
+  if (req.body.status === 'public') {
+    newPost.icon = 'bi bi-globe';
+  }
+  if (req.body.status === 'private') {
+    newPost.icon = 'bi bi-key';
+  } 
+  if (req.body.status === 'friends') {
+    newPost.icon = 'bi bi-people-fill';
+  }
   new Post(newPost).save()
   .then(() => {
-    res.redirect('/posts');
+    if (req.body.status === 'public') {
+      res.redirect('/posts');
+    } else {
+      res.redirect('/profile');
+    }
   });
 });
 
