@@ -1,9 +1,9 @@
 <div class="row">
   <div class="col-sm-4 offset-sm-4 my-4 shad p-4 bg-dark-trans">
-    <h1 style="display: none;">
-      <i class="bi bi-hourglass-split" id="spinner"></i> Tegereza ...
+    <h1>
+      <i class="bi bi-hourglass-split" id="spinner" style="display: none;"> Tegereza ...</i> 
     </h1>
-    <form action="/createPost" method="post">
+    <form id="post-form" action="/createPost" method="post">
       <div class="form-group my-3">
         <label for="title">Umutwe</label>
         <input type="text" name="title" id="title" class="form-control">
@@ -50,3 +50,13 @@
     </form>
   </div>
 </div>
+
+<script>
+  function showSpinner() {
+    document.getElementById('post-form').style.display = 'none';
+    document.getElementById('spinner').style.display = 'block';
+    setTimeout(function(){
+      document.getElementById('post-form').submit();
+    },7000);
+  }
+</script>
