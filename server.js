@@ -764,6 +764,29 @@ app.get('/displayPostForm', requireLogin, (req, res) => {
   });
 });
 
+//Create Post
+app.post('/createPost', requireLogin, (req, res) => {
+  let allowComments = Boolean;
+  if (req.body.allowComments) {
+    allowComments = true;
+  } else {
+    allowComments = false;
+  }
+  const newPost = {
+    title: req.body.title,
+    body: req.body.body,
+    status: req.body.status,
+    image: `https://rambagiza-online.s3.us-east-2.amazonaws.com/${req.body.image}`,
+    postUser: req.user._id,
+    allowComments: allowComments,
+    date: new Date()
+  }
+  new Post(newPost).save()
+  .then(() => {
+    res.redirect('/posts');
+  });
+});
+
 app.get('/logout', (req, res) => {
   User.findById({_id:req.user._id})
   .then((user) => {
