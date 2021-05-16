@@ -757,6 +757,13 @@ app.get('/showSmile/:id', requireLogin, (req, res) => {
   });
 });
 
+// Get method to display post form
+app.get('/displayPostForm', requireLogin, (req, res) => {
+  res.render('post/displayPostForm', {
+    title: 'Igitekerezo'
+  });
+});
+
 app.get('/logout', (req, res) => {
   User.findById({_id:req.user._id})
   .then((user) => {

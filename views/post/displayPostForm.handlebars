@@ -1,0 +1,52 @@
+<div class="row">
+  <div class="col-sm-4 offset-sm-4 my-4 shad p-4 bg-dark-trans">
+    <h1 style="display: none;">
+      <i class="bi bi-hourglass-split" id="spinner"></i> Tegereza ...
+    </h1>
+    <form action="/createPost" method="post">
+      <div class="form-group my-3">
+        <label for="title">Umutwe</label>
+        <input type="text" name="title" id="title" class="form-control">
+      </div>
+
+      <div class="form-group my-3">
+        <label for="body">Igitekerezo</label>
+        <textarea name="body" class="form-control"></textarea>
+      </div>
+
+      <div class="form-group my-3">
+        <label for="status">Kugaragara</label>
+        <select class="form-select" aria-label="Default select example">          
+          <option selected value="public">Rubanda</option>
+          <option value="friends">Inshuti</option>
+          <option value="private">Umwihariko</option>
+        </select>
+      </div>
+
+      <div class="form-group my-3">
+        <input type="file" name="upload" id="upload-input" class="form-control">
+      </div>
+
+      <div class="form-group my-3">
+        <label for="checkbox">Abandi babivugeho?</label>
+        {{!-- <input type="checkbox" name="allowComments" id="checkbox" class="form-check-input"> --}}
+        <div class="form-check">
+          <input name="allowComments" class="form-check-input" type="checkbox" value="true" id="flexCheckDefault">
+          <label class="form-check-label" for="flexCheckDefault">
+            Yego
+          </label>
+        </div>
+        <div class="form-check">
+          <input name="allowComments" class="form-check-input" type="checkbox" value="false" id="flexCheckChecked" checked>
+          <label class="form-check-label" for="flexCheckChecked">
+            Oya
+          </label>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <button type="button" class="btn btn-primary my-3" onclick="showSpinner()"><i class="bi bi-share"></i> Ohereza</button>
+      </div>
+    </form>
+  </div>
+</div>
