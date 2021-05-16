@@ -55,6 +55,13 @@ a {
   height: 6em;
 }
 
+@media only screen and (max-width: 600px) {
+  .img-thumbnail {
+    width: 3em;
+    height: 3em;
+  }
+}
+
 .chatroom-users {
   object-fit: cover;
   overflow: hidden;
