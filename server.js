@@ -793,7 +793,7 @@ app.get('/posts', requireLogin, (req, res) => {
   .populate('postUser')
   .sort({date: 'desc'})
   .then((posts) => {
-    res.render('posts', {
+    res.render('post/posts', {
       title: 'Ibitekerezo',
       posts: posts
     })
