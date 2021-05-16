@@ -153,6 +153,7 @@ app.get('/auth/google/callback', passport.authenticate('google', {
   failureRedirect: '/'
 }));
 
+// Display User Profile Page
 app.get('/profile', requireLogin, (req, res) => {
   User.findById({_id:req.user._id}).then((user) => {
     if (user) {
@@ -168,12 +169,28 @@ app.get('/profile', requireLogin, (req, res) => {
               {sender:req.user._id,senderRead:false}
             ]})
             .then((unread) => {
-              res.render('profile', {
-                title: 'Imyirondoro',
-                user: user,
-                newSmile: newSmile,
-                unread: unread
-              });
+              Post.find({postUser: req.user._id})
+              .populate('postUser')
+              .sort({date: 'desc'})
+              .then((posts) => {
+                if (posts) {
+                  res.render('profile', {
+                    title: 'Imyirondoro',
+                    user: user,
+                    newSmile: newSmile,
+                    unread: unread,
+                    posts: posts
+                  });
+                } else {
+                  console.log(`User doesn't have any post!`);
+                  res.render('profile', {
+                    title: 'Imyirondoro',
+                    user: user,
+                    newSmile: newSmile,
+                    unread: unread
+                  });
+                }
+              })
             });
           });
         }
