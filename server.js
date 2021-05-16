@@ -787,6 +787,19 @@ app.post('/createPost', requireLogin, (req, res) => {
   });
 });
 
+// Display all public posts
+app.get('/posts', requireLogin, (req, res) => {
+  Post.find({status: 'public'})
+  .populate('postUser')
+  .sort({date: 'desc'})
+  .then((posts) => {
+    res.render('posts', {
+      title: 'Ibitekerezo',
+      posts: posts
+    })
+  });
+});
+
 app.get('/logout', (req, res) => {
   User.findById({_id:req.user._id})
   .then((user) => {
