@@ -830,6 +830,14 @@ app.get('/posts', requireLogin, (req, res) => {
   });
 });
 
+// Delete post
+app.get('/deletePost/:id', requireLogin, (req, res) => {
+  Post.deleteOne({_id: req.params.id})
+  .then(() => {
+    res.redirect('/profile');
+  });
+});
+
 app.get('/logout', (req, res) => {
   User.findById({_id:req.user._id})
   .then((user) => {
