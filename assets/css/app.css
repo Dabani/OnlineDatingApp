@@ -114,3 +114,7 @@ a {
 .bg-dark-trans {
   background-color: rgba(0, 0, 0, 0.5);
 }
+
+.post-icons {
+  margin-right: 0.5em;
+}

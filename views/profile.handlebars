@@ -157,6 +157,11 @@
           <p>{{body}}</p>
           <img src="{{image}}" class="img-fluid">
           <small>{{getLastMoment date 'hour'}}</small>
+          <p>
+            <a href="/editPost/{{_id}}"><i class="bi bi-pencil post-icons"> Edit</i></a>
+            <span class="mx-3"></span>
+            <a href="/deletePost/{{_id}}" class="text-danger"><i class="bi bi-trash post-icons"> Delete</i></a>
+          </p>
         </div>
       </div>
     {{else}}
