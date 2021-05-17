@@ -838,6 +838,17 @@ app.get('/deletePost/:id', requireLogin, (req, res) => {
   });
 });
 
+// Edit post
+app.get('/editPost/:id', requireLogin, (req, res) => {
+  Post.findById({_id: req.params.id})
+  .then((post) => {
+    res.render('post/editPost', {
+      title: 'Kuvugurura',
+      post: post
+    });
+  });
+});
+
 app.get('/logout', (req, res) => {
   User.findById({_id:req.user._id})
   .then((user) => {

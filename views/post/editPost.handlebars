@@ -1,0 +1,39 @@
+<div class="row">
+  <div class="col-sm-4 offset-sm-4 my-4 shad p-4 bg-dark-trans">
+    <form action="/editPost" method="post">
+      <div class="form-group my-3">
+        <label for="title">Umutwe</label>
+        <input type="text" name="title" value="{{post.title}}" id="title" class="form-control">
+      </div>
+
+      <div class="form-group my-3">
+        <label for="body">Igitekerezo</label>
+        <textarea name="body" class="form-control">{{post.body}}</textarea>
+      </div>
+
+      <div class="form-group my-3">
+        <label for="status">Kugaragara</label>
+        <select class="form-select" name="status" aria-label="Default select example">          
+          <option value="public" {{#if_eq post.status "public"}}selected{{/if_eq}}>Rubanda</option>
+          <option value="friends" {{#if_eq post.status "friends"}}selected{{/if_eq}}>Inshuti</option>
+          <option value="private" {{#if_eq post.status "private"}}selected{{/if_eq}}>Umwihariko</option>
+        </select>
+      </div>
+
+      <div class="form-group my-3">
+        <img src="{{post.image}}" class="img-fluid">
+        <input type="file" name="image" id="upload-input" class="form-control">
+      </div>
+
+      <div class="form-group my-3">
+        <label for="checkbox">Abandi babivugeho?</label>
+        <input type="checkbox" name="allowComments" id="checkbox" class="form-check-input" {{#if_eq post.allowComments true}}checked{{/if_eq}}>
+
+      <div class="form-group">
+        <button type="button" class="btn btn-primary my-3">
+          <i class="bi bi-save"></i> Vugurura
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
