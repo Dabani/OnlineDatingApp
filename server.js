@@ -856,10 +856,17 @@ app.get('/editPost/:id', requireLogin, (req, res) => {
 // Submit form to update post
 app.post('/editPost/:id', requireLogin, (req, res) => {
   Post.findByIdAndUpdate({_id: req.params.id})
-  .then((post) => {
+    .then((post) => {
+      let allowComments = Boolean;
+      if (req.body.allowComments) {
+        allowComments = true;
+      } else {
+        allowComments = false;
+      }
     post.title = req.body.title;
     post.body = req.body.body;
     post.status = req.body.status;
+    post.allowComments = allowComments;
     if ((req.body.image !== '') && (post.image !== `https://rambagiza-online.s3.us-east-2.amazonaws.com/${req.body.image}`)) {
       post.image = `https://rambagiza-online.s3.us-east-2.amazonaws.com/${req.body.image}`;
     }
