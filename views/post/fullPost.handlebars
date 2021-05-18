@@ -1,0 +1,45 @@
+<div class="row">
+  <div class="col-sm-8 offset-sm-2 shad my-4 bg-dark-trans p-4">
+
+    <!-- Media object -->
+    <div class="d-flex">
+      <!-- Image -->
+      <img
+        src="{{post.postUser.image}}"
+        class="me-3 rounded-circle img-thumbnail"
+      />
+      <!-- Media body -->
+      <div>
+        <h5 class="fw-bold">
+          {{post.title}}
+          <small class="text-muted">{{formatTime date "DD/MM/YY - HH:mm:ss"}}</small>
+        </h5>
+        <p>
+          {{post.body}}
+        </p>
+        <!-- Nested Media object -->
+        {{#each post}}
+        {{#each likes}}
+        <div class="d-flex mt-4">
+          <img
+            src="{{likeUser.image}}"
+            class="me-3 rounded-circle img-thumbnail"
+          />
+          <div>
+            <h5 class="fw-bold">
+              <i class="bi bi-hand-thumbs-up"></i>
+              <br>
+              <small class="text-muted">{{getLastMoment date 'hour'}}</small>
+            </h5>
+          </div>
+        </div>
+        {{/each}}
+        {{/each}}
+        <!-- Nested Media object -->
+      </div>
+      <!-- Media body -->
+    </div>
+    <!-- Media object -->
+
+  </div>
+</div>
