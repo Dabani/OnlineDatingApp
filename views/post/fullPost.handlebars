@@ -41,6 +41,20 @@
         {{/each}}
         {{/each}}
         <!-- Nested Media object -->
+        <br>
+        {{#if post.allowComments}}
+        <form action="/leaveComment" method="post" class="form-inline">
+          <div class="form-group my-3 mx-sm-2 mg-2">
+            <input type="text" name="commentBody" class="form-control" placeholder="Tanga igitekerezo">
+          </div>
+
+          <button type="submit" class="btn btn-primary my-3">
+            <i class="bi bi-chat-text"></i>
+          </button>
+        </form>
+        {{else}}
+        <p class="text-danger">Comment is not allowed!</p>
+        {{/if}}
       </div>
       <!-- Media body -->
     </div>
