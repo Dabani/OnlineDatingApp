@@ -4,14 +4,17 @@
     <!-- Media object -->
     <div class="d-flex">
       <!-- Image -->
-      <img
-        src="{{post.postUser.image}}"
-        class="me-3 rounded-circle img-thumbnail"
-      />
+      <a href="/userProfile/{{post.postUser._id}}">
+        <img
+          src="{{post.postUser.image}}"
+          class="me-3 rounded-circle img-thumbnail"
+        />
+      </a>
       <!-- Media body -->
       <div>
         <h5 class="fw-bold">
           {{post.title}}
+          <br>
           <small class="text-muted">{{formatTime date "DD/MM/YY - HH:mm:ss"}}</small>
         </h5>
         <p>
@@ -21,10 +24,12 @@
         {{#each post}}
         {{#each likes}}
         <div class="d-flex mt-4">
-          <img
-            src="{{likeUser.image}}"
-            class="me-3 rounded-circle img-thumbnail"
-          />
+          <a href="/userProfile/{{likeUser._id}}">
+            <img
+              src="{{likeUser.image}}"
+              class="me-3 rounded-circle img-thumbnail"
+            />
+          </a>
           <div>
             <h5 class="fw-bold">
               <i class="bi bi-hand-thumbs-up"></i>

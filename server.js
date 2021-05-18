@@ -770,7 +770,7 @@ app.get('/showSmile/:id', requireLogin, (req, res) => {
       }
       if (smile) {
         res.render('smile/showSmile', {
-          title: 'Inseko nshya',
+          title: 'Intashyo',
           smile: smile
         });
       }
@@ -781,7 +781,7 @@ app.get('/showSmile/:id', requireLogin, (req, res) => {
 // Get method to display post form
 app.get('/displayPostForm', requireLogin, (req, res) => {
   res.render('post/displayPostForm', {
-    title: 'Igitekerezo'
+    title: 'Inkuru'
   });
 });
 
