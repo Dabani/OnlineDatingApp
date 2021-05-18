@@ -828,7 +828,7 @@ app.get('/posts', requireLogin, (req, res) => {
   .sort({date: 'desc'})
   .then((posts) => {
     res.render('post/posts', {
-      title: 'Ibitekerezo',
+      title: 'Inkuru',
       posts: posts
     })
   });
