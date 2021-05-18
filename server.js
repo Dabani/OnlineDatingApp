@@ -909,6 +909,19 @@ app.get('/likePost/:id', requireLogin, (req, res) => {
   });
 });
 
+app.get('/fullPost/:id', requireLogin, (req, res) => {
+  Post.findById({_id: req.params.id})
+  .populate('postUser')
+  .populate('likes.likeUser')
+  .sort({date:'desc'})
+  .then((post) => {
+    res.render('post/fullPost', {
+      title: 'Inkuru irambuye',
+      post: post
+    })
+  })
+});
+
 app.get('/logout', (req, res) => {
   User.findById({_id:req.user._id})
   .then((user) => {
