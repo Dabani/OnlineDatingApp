@@ -8,8 +8,6 @@
           <a href="/uploadImage">
             <img src="{{user.image}}" class="card-img-top" alt="{{user.fullname}}">
           </a>
-          {{!-- <div class="card-body">   
-          </div> --}}
         </div>
       </div>
 
@@ -156,7 +154,12 @@
           <h6><em><i class="bi bi-pencil-square"></i> {{postUser.fullname}}</em></h6>
           <p>{{body}}</p>
           <img src="{{image}}" class="img-fluid">
-          <small>{{getLastMoment date 'hour'}}</small>
+          <p>
+            Byanditswe: <small>{{getLastMoment date 'hour'}}</small>
+            
+            , Byavuguruwe: <small>{{formatTime lastUpdate 'DD/MM/YYYY - hh:mm:ss'}}
+            </small>
+          </p>
           <p>
             <a href="/editPost/{{_id}}"><i class="bi bi-pencil post-icons"> Edit</i></a>
             <span class="mx-3"></span>

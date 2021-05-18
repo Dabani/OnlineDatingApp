@@ -51,6 +51,10 @@ const postSchema = new Schema({
   }],
   icon: {
     type: String
+  },
+  lastUpdate: {
+    type: Date,
+    default: Date.now
   }
 });
 

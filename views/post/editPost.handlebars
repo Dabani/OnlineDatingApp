@@ -1,6 +1,9 @@
 <div class="row">
   <div class="col-sm-4 offset-sm-4 my-4 shad p-4 bg-dark-trans">
-    <form action="/editPost" method="post">
+    <h1>
+      <i class="bi bi-hourglass-split" id="spinner" style="display: none;"> Tegereza ...</i> 
+    </h1>
+    <form id="edit-form" action="/editPost/{{post._id}}" method="post">
       <div class="form-group my-3">
         <label for="title">Umutwe</label>
         <input type="text" name="title" value="{{post.title}}" id="title" class="form-control">
@@ -30,10 +33,19 @@
         <input type="checkbox" name="allowComments" id="checkbox" class="form-check-input" {{#if_eq post.allowComments true}}checked{{/if_eq}}>
 
       <div class="form-group">
-        <button type="button" class="btn btn-primary my-3">
+        <button type="button" onclick="savePost()" class="btn btn-primary my-3">
           <i class="bi bi-save"></i> Vugurura
         </button>
       </div>
     </form>
   </div>
 </div>
+<script>
+  function savePost() {
+    document.getElementById('spinner').style.display = 'block';
+    document.getElementById('edit-form').style.display = 'none';
+    setTimeout(function(){
+      document.getElementById('edit-form').submit();
+    },7000);
+  }
+</script>

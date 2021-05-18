@@ -100,6 +100,10 @@ const hbs = exphbs.create({
       const formatToUse = (arguments[1] && arguments[1].hash && arguments[1].hash.format) || "DD/MM/YYYY"
       return moment(date).format(formatToUse);
     },
+    formatTime: function(date, format){
+      let mTime = moment(date);
+      return mTime.format(format);
+    },
     now: function() {
       return new Date();
     }
@@ -486,7 +490,7 @@ app.post('/chat/:id', requireLogin, walletChecker, (req, res) => {
                 }
                 if (user) {
                   res.render('chatRoom', {
-                    title: 'Ikiganiro',
+                    title: 'Umushyikirano',
                     chat: chat,
                     user: user
                   })
@@ -540,7 +544,7 @@ app.post('/chat/:id', requireLogin, walletChecker, (req, res) => {
                   }
                   if (user) {
                     res.render('chatRoom', {
-                      title: 'Ikiganiro',
+                      title: 'Umushyikirano',
                       user:user,
                       chat:chat
                     })
@@ -571,7 +575,7 @@ app.get('/chats', requireLogin, (req, res) => {
     .sort({ date: 'desc' })
     .then((sent) => {
       res.render('chat/chats', {
-        title: 'Urutonde rw\'ibiganiro',
+        title: 'Urutonde rw\'imishyikirano',
         received:received,
         sent: sent
       })
@@ -788,7 +792,7 @@ app.post('/createPost', requireLogin, (req, res) => {
     allowComments = true;
   } else {
     allowComments = false;
-  }
+  }  
   const newPost = {
     title: req.body.title,
     body: req.body.body,
@@ -847,6 +851,35 @@ app.get('/editPost/:id', requireLogin, (req, res) => {
       post: post
     });
   });
+});
+
+// Submit form to update post
+app.post('/editPost/:id', requireLogin, (req, res) => {
+  Post.findByIdAndUpdate({_id: req.params.id})
+  .then((post) => {
+    post.title = req.body.title;
+    post.body = req.body.body;
+    post.status = req.body.status;
+    if ((req.body.image !== '') && (post.image !== `https://rambagiza-online.s3.us-east-2.amazonaws.com/${req.body.image}`)) {
+      post.image = `https://rambagiza-online.s3.us-east-2.amazonaws.com/${req.body.image}`;
+    }
+    post.allowComments = req.body.allowComments;
+    if (req.body.status === 'public') {
+      post.icon = 'bi bi-globe';
+    }
+    if (req.body.status === 'private') {
+      post.icon = 'bi bi-key';
+    }
+    if (req.body.status === 'friends') {
+      post.icon = 'bi bi-people-fill';
+    }
+    post.lastUpdate = new Date();
+
+    post.save()
+    .then(() => {
+      res.redirect('/profile');
+    });
+  })
 });
 
 app.get('/logout', (req, res) => {
