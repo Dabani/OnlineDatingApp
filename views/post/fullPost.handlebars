@@ -14,11 +14,11 @@
       </div>
       <!-- Media body -->
       <divclass="flex-grow-1 ms-3">
-        <h5 class="fw-bold">
+        <h2 class="fw-bold">
           {{post.title}}
-          <br>
-          <small class="text-muted">{{formatTime date "DD/MM/YY - HH:mm:ss"}}</small>
-        </h5>
+          <small><i class="{{post.icon}}"></i></small>
+        </h2>
+        <i class="bi bi-calendar-event text-muted post-icons"></i><small class="text-muted">{{formatTime date "DD/MM/YY - HH:mm:ss"}}</small>
         <p>
           {{post.body}}
         </p>
@@ -67,14 +67,30 @@
         {{/each}}
         <!-- Nested Media object -->
         <br>
+        <h4>
+          <a href="/likePost/{{post._id}}">
+            <i class="bi bi-hand-thumbs-up post-icons"> Shima</i>
+          </a>
+          {{#if post.allowComments}}
+          <a class="btn btn-primary" id="comment-icon" onclick="displayCommentForm()">
+            <i class="bi bi-chat-text post-icons"> Urabyumva ute?</i>
+          </a>
+          {{/if}}
+        </h4>
         {{#if post.allowComments}}
-        <form action="/leaveComment/{{post._id}}" method="post" class="form-inline">
+        <form id="comment_form" action="/leaveComment/{{post._id}}" method="post" class="form-inline" style="display: none;">
           
           <div class="input-group mb-3">
             <input type="text" class="form-control" name="commentBody" placeholder="Tanga igitekerezo" aria-label="Tanga igitekerezo" aria-describedby="button-addon2">
             <button class="btn btn-outline-secondary" type="submit" id="button-addon2"><i class="bi bi-chat-text"></i></button>
           </div>
         </form>
+        <script>
+          function displayCommentForm(){
+            document.getElementById('comment-icon').style.display = 'none';
+            document.getElementById('comment_form').style.display = 'block';
+          }
+        </script>
         {{else}}
         <p class="text-danger">Comment is not allowed!</p>
         {{/if}}

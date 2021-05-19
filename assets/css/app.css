@@ -36,6 +36,10 @@ a {
   text-decoration: none;
 }
 
+i {
+  font-style: normal;
+}
+
 #profile-info i {
   margin-right: 0.2em;
 }

@@ -64,7 +64,7 @@
 
 <div class="row my-4">
   <div class="col-sm-8 offset-sm-2 p-4 bg-dark-trans shad">
-    <h2>Public Posts</h2>
+    <h2 class="text-center">Public Posts</h2>
     {{#each publicPosts}}
     <!-- Media object -->
     <div class="d-flex">
@@ -129,7 +129,18 @@
           </div>
         </div>
         {{/each}}
-        <!-- Nested Media object -->        
+        <!-- Nested Media object -->
+        <br>
+        <h4>
+          <a href="/likePost/{{_id}}">
+            <i class="bi bi-hand-thumbs-up post-icons"> Shima</i>
+          </a>
+
+          <a href="/fullPost/{{_id}}">
+            <i class="bi bi-chat-text post-icons"> Urabyumva ute?</i>
+          </a>
+
+        </h4>
       </div>
       <!-- Media body -->
     </div>
