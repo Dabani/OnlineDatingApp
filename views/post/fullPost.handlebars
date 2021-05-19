@@ -69,14 +69,7 @@
         <br>
         {{#if post.allowComments}}
         <form action="/leaveComment/{{post._id}}" method="post" class="form-inline">
-          {{!-- <div class="form-group my-3 mx-sm-2 mg-2">
-            <input type="text" name="commentBody" class="form-control" placeholder="Tanga igitekerezo">
-
-            <button type="submit" class="btn btn-primary my-3">
-              <i class="bi bi-chat-text"></i>
-            </button>
-          </div> --}}
-
+          
           <div class="input-group mb-3">
             <input type="text" class="form-control" name="commentBody" placeholder="Tanga igitekerezo" aria-label="Tanga igitekerezo" aria-describedby="button-addon2">
             <button class="btn btn-outline-secondary" type="submit" id="button-addon2"><i class="bi bi-chat-text"></i></button>

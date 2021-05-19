@@ -363,11 +363,15 @@ app.get('/userProfile/:id', requireLogin, (req, res) => {
   .then((user) => {
     Smile.findOne({receiver:req.params.id})
     .then((smile) => {
-      res.render('userProfile', {
-        title: 'Imyirondoro',
-        oneUser: user,
-        smile: smile
-      });
+      Post.find({status: 'public', postUser:user._id})
+      .then((posts) => {
+        res.render('userProfile', {
+          title: 'Imyirondoro',
+          oneUser: user,
+          smile: smile,
+          publicPosts: posts
+        });
+      })
     })
   });
 });
