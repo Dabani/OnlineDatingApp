@@ -364,12 +364,15 @@ app.get('/userProfile/:id', requireLogin, (req, res) => {
     Smile.findOne({receiver:req.params.id})
     .then((smile) => {
       Post.find({status: 'public', postUser:user._id})
-      .then((posts) => {
+      .populate('postUser')
+      .populate('comments.commentUser')
+      .populate('likes.likeUser')
+      .then((publicPosts) => {
         res.render('userProfile', {
           title: 'Imyirondoro',
           oneUser: user,
           smile: smile,
-          publicPosts: posts
+          publicPosts: publicPosts
         });
       })
     })

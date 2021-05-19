@@ -61,3 +61,81 @@
 
   </div>
 </div>
+
+<div class="row my-4">
+  <div class="col-sm-8 offset-sm-2 p-4 bg-dark-trans shad">
+    <h2>Public Posts</h2>
+    {{#each publicPosts}}
+    <!-- Media object -->
+    <div class="d-flex">
+      <!-- Image -->
+      <div class="flex-shrink-0">
+      <a href="/userProfile/{{postUser._id}}">
+        <img
+          src="{{postUser.image}}"
+          class="me-3 rounded-circle img-thumbnail"
+        />
+      </a>
+      </div>
+      <!-- Media body -->
+      <div class="flex-grow-1 ms-3">
+        <h5 class="fw-bold">
+          {{title}}
+          <br>
+          <small class="text-muted">{{formatTime date "DD/MM/YY - HH:mm:ss"}}</small>
+        </h5>
+        <p>
+          {{body}}
+        </p>
+        <img src="{{image}}" class="img-fluid">
+        <!-- Nested Media object -->
+        
+        {{#if allowComments}}
+        {{#each comments}}
+        <div class="d-flex mt-4">
+          <a href="/userProfile/{{commentUser._id}}">
+            <img
+              src="{{commentUser.image}}"
+              class="me-3 rounded-circle img-thumbnail"
+            />
+          </a>
+          <div>
+            <p class="fw-bold">
+              {{commentBody}}
+            </p>
+              
+              <br>
+              <small class="text-muted">{{getLastMoment date 'hour'}}</small>
+          </div>
+        </div>
+        <hr>
+        {{/each}}
+        {{/if}}
+        
+        {{#each likes}}
+        <div class="d-flex mt-4">
+          <a href="/userProfile/{{likeUser._id}}">
+            <img
+              src="{{likeUser.image}}"
+              class="me-3 rounded-circle img-thumbnail"
+            />
+          </a>
+          <div>
+            <h5 class="fw-bold">
+              <i class="bi bi-hand-thumbs-up"></i>
+              <br>
+              <small class="text-muted">{{getLastMoment date 'hour'}}</small>
+            </h5>
+          </div>
+        </div>
+        {{/each}}
+        <!-- Nested Media object -->        
+      </div>
+      <!-- Media body -->
+    </div>
+    <!-- Media object -->
+    {{else}}
+    <p>User doesn't have any public posts...</p>
+    {{/each}}
+  </div>
+</div>
