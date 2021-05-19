@@ -913,6 +913,7 @@ app.get('/fullPost/:id', requireLogin, (req, res) => {
   Post.findById({_id: req.params.id})
   .populate('postUser')
   .populate('likes.likeUser')
+  .populate('comments.commentUser')
   .sort({date:'desc'})
   .then((post) => {
     res.render('post/fullPost', {
@@ -920,6 +921,27 @@ app.get('/fullPost/:id', requireLogin, (req, res) => {
       post: post
     })
   })
+});
+
+// Submit form to leave comment
+app.post('/leaveComment/:id', requireLogin, (req, res) => {
+  Post.findById({_id:req.params.id})
+  .then((post) => {
+    const newComment = {
+      commentUser: req.user._id,
+      commentBody: req.body.commentBody,
+      date: new Date()
+    }
+    post.comments.push(newComment);
+    post.save((err, post) => {
+      if (err) {
+        throw err;
+      }
+      if (post) {
+        res.redirect(`/fullPost/${post._id}`);
+      }
+    });
+  });
 });
 
 app.get('/logout', (req, res) => {
