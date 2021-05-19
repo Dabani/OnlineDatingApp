@@ -6,9 +6,31 @@
       <div class="row g-0">
         <div class="col-md-4">
           <img src="{{oneUser.image}}" class="img-fluid" alt="{{oneUser.fullname}}">
+          <div class="card-body">
+            
+            <a href="/startChat/{{oneUser._id}}" class="btn btn-outline-primary card-link mb-3" data-bs-toggle="tooltip" data-bs-placement="top" title="Tangira Umushyikirano">
+              <i class="bi bi-chat-text"></i>
+            </a>
+            {{#if smile}}
+            <a href="/deleteSmile/{{oneUser._id}}" class="btn btn-outline-danger card-link mb-3" data-bs-toggle="tooltip" data-bs-placement="top" title="Kuraho Intashyo">
+              <i class="bi bi-emoji-smile newsmile"></i>
+            </a>
+            {{else}}
+            <a href="/sendSmile/{{oneUser._id}}" class="btn btn-success card-link mb-3" data-bs-toggle="tooltip" data-bs-placement="top" title="Ohereza Intashyo">
+              <i class="bi bi-emoji-smile"></i>
+            </a>
+            {{/if}}
+
+            {{#if oneUser.online}}
+            <i class="bi bi-circle-fill text-success card-link" data-bs-toggle="tooltip" data-bs-placement="top" title="Ndi ku rubuga"> Ndahari</i>
+            {{else}}
+            <i class="bi bi-circle-fill text-danger card-link" data-bs-toggle="tooltip" data-bs-placement="top" title="Sindi ku rubuga"> Simpari</i>
+            {{/if}}
+          </div>
         </div>
         <div class="col-md-8">
           <div class="card-body">
+            <h1 class="text-center">Profile</h1>
             <h3><i class="bi bi-person-badge"></i> {{oneUser.fullname}}</h3>
             <table class="my-4">
               <tbody>
@@ -42,18 +64,6 @@
                 </tr>
               </tbody>
             </table>
-            <a href="/startChat/{{oneUser._id}}" class="btn btn-outline-primary card-link mb-3" data-bs-toggle="tooltip" data-bs-placement="top" title="Start Chat">
-              <i class="bi bi-chat-text"></i>
-            </a>
-            {{#if smile}}
-            <a href="/deleteSmile/{{oneUser._id}}" class="btn btn-outline-danger card-link mb-3" data-bs-toggle="tooltip" data-bs-placement="top" title="Kuraho Intashyo">
-              <i class="bi bi-emoji-smile newsmile"></i>
-            </a>
-            {{else}}
-            <a href="/sendSmile/{{oneUser._id}}" class="btn btn-success card-link mb-3" data-bs-toggle="tooltip" data-bs-placement="top" title="Ohereza Intashyo">
-              <i class="bi bi-emoji-smile"></i>
-            </a>
-            {{/if}}
           </div>
         </div>
       </div>
