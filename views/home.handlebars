@@ -1,15 +1,15 @@
 <h1><i class="bi bi-house-door"></i> Rambagiza tubahaye ikaze!</h1>
 <div class="row">
-  <div class="col-sm-4 offset-sm-4 my-4 p-4 shad">
+  <div class="col-sm-4 offset-sm-4 my-4 p-4 bg-dark-trans shad">
     {{#if user}}
     <p>Karibu {{user.firstname}}, ubu winjiye ku rubuga...</p>
     {{else}}
     <p class="text-center">
-      <a href="/auth/facebook" class="btn btn-primary btn-lg"><i class="bi bi-facebook"></i> Injira na Facebook</a>
+      <a href="/auth/facebook" class="btn btn-primary btn-lg btn-facebook"><i class="bi bi-facebook"></i> Injira na Facebook</a>
     </p>
 
     <p class="text-center">
-      <a href="/auth/google" class="btn btn-danger btn-lg"><i class="bi bi-google"></i> Injira na Google</a>
+      <a href="/auth/google" class="btn btn-danger btn-lg btn-google"><i class="bi bi-google"></i> Injira na Google</a>
     </p>
     {{/if}}
     <p class="text-center">cyangwa</p>

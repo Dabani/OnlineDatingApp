@@ -122,3 +122,42 @@ i {
 .post-icons {
   margin-right: 0.5em;
 }
+
+.btn-facebook {
+  background: #4aa1f3;
+  border-radius: 0;
+  color: #fff;
+  width: auto;
+}
+
+.btn-facebook:link,
+.btn-facebook:visited {
+  background: #4aa1f3;
+  color: #fff;
+  text-decoration: none;
+}
+
+.btn-facebook:active,
+.btn-facebook:hover {
+  background: #4aa1f3;
+  color: #fff;
+}
+
+
+/* Google Button*/
+
+.btn-google {
+  background: #e44b34;
+  border-radius: 0;
+  color: #fff;
+  width: auto;
+}
+
+.btn-google:link,
+.btn-google:visited,
+.btn-google:active,
+.btn-google:hover {
+  background: #e44b34;
+  color: #fff;
+  text-decoration: none;
+}
