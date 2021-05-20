@@ -318,14 +318,31 @@ app.get('/retrievePwd', (req, res) => {
 
 app.post('/retrievePwd', (req, res) => {
   let email = req.body.email.trim();
-  let pwd = req.body.password.trim();
+  let pwd1 = req.body.password.trim();
   let pwd2 = req.body.password2.trim();
 
-  if (pwd !== pwd2) {
+  if (pwd1 !== pwd2) {
     res.render('pwdDoesNotMatch', {
       title: 'Amagambo ntahura'
     });
   }
+  User.findOne({email:email})
+  .then((user) => {
+    let salt = bcrypt.genSaltSync(10);
+    let hash = bcrypt.hashSync(pwd1, hash);
+
+    user.password = hash;
+    user.save((err,user) => {
+      if (err) {
+        throw err;
+      }
+      if (user) {
+        res.render('pwdUpdated', {
+          title: 'Ijambo ryavuguruwe'
+        });
+      }
+    });
+  });
 });
 
 // handle get route
