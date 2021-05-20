@@ -310,10 +310,22 @@ app.get('/loginErrors', (req, res) => {
 });
 
 // Retreive password process
-app.get('/retreivePwd', (req, res) => {
-  res.render('retreivePwd', {
+app.get('/retrievePwd', (req, res) => {
+  res.render('retrievePwd', {
     title: 'Kwiyibutsa'
   })
+});
+
+app.post('/retrievePwd', (req, res) => {
+  let email = req.body.email.trim();
+  let pwd = req.body.password.trim();
+  let pwd2 = req.body.password2.trim();
+
+  if (pwd !== pwd2) {
+    res.render('pwdDoesNotMatch', {
+      title: 'Amagambo ntahura'
+    });
+  }
 });
 
 // handle get route
