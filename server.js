@@ -309,6 +309,13 @@ app.get('/loginErrors', (req, res) => {
   });
 });
 
+// Retreive password process
+app.get('/retreivePwd', (req, res) => {
+  res.render('retreivePwd', {
+    title: 'Kwiyibutsa'
+  })
+});
+
 // handle get route
 app.get('/uploadImage', requireLogin, (req, res) => {
   res.render('uploadImage', {
