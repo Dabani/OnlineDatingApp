@@ -61,3 +61,13 @@ $(function () {
     $('.newsmile').attr('style', 'color:red');
   }, 30);
 })
+
+// Friend notification icon
+$(function () {
+  setInterval(function () {
+    $('.friend').attr('style', 'color:orange');
+  }, 10);
+  setInterval(function () {
+    $('.friend').attr('style', 'color:white');
+  }, 30);
+});

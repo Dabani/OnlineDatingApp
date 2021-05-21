@@ -12,6 +12,15 @@
     {{#if unread}}
       <a href="/chats"><i class="bi bi-envelope letter" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Ubutumwa bushya"></i></a>
     {{/if}}
+
+    {{#each user.friends}}
+    {{#if isFriend}}
+    {{else}}
+      <a class="navbar-brand" href="/showFriendRequest/{{friend._id}}">
+      <i class="bi bi-person friend" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Wasabwe Ubucuti"></i>
+      </a>
+    {{/if}}
+    {{/each}}
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>

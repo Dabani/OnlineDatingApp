@@ -991,24 +991,21 @@ app.post('/leaveComment/:id', requireLogin, (req, res) => {
 app.get('/sendFriendRequest/:id', requireLogin, (req, res) => {
   User.findOne({_id:req.params.id})
   .then((user) => {
-    User.findById({_id:req.user._id})
-    .then((loggedUser) => {
-      let newFriendRequest = {
-        friend: req.params.id
+    let newFriendRequest = {
+      friend: req.user._id
+    }
+    user.friends.push(newFriendRequest);
+    user.save((err, user) => {
+      if (err) {
+        throw err;
       }
-      loggedUser.friends.push(newFriendRequest);
-      loggedUser.save((err, loggedUser) => {
-        if (err) {
-          throw err;
-        }
-        if (loggedUser) {
-          res.render('friends/askFriendRequest', {
-            title: 'Gusaba Ubucuti',
-            newFriend: user
-          });
-        }
-      });
-    });
+      if (user) {
+        res.render('friends/askFriendRequest', {
+          title: 'Gusaba Ubucuti',
+          newFriend: user
+        });
+      }
+    })
   });
 });
 
