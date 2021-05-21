@@ -987,6 +987,17 @@ app.post('/leaveComment/:id', requireLogin, (req, res) => {
   });
 });
 
+// Start Friend Request Process
+app.get('/sendFriendRequest/:id', requireLogin, (req, res) => {
+  User.findOne({_id:req.params.id})
+  .then((user) => {
+    res.render('friends/askFriendRequest', {
+      title: 'Gusaba Ubucuti',
+      newFriend: user
+    })
+  })
+});
+
 app.get('/logout', (req, res) => {
   User.findById({_id:req.user._id})
   .then((user) => {
