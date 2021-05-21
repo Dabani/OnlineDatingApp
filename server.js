@@ -329,7 +329,7 @@ app.post('/retrievePwd', (req, res) => {
   User.findOne({email:email})
   .then((user) => {
     let salt = bcrypt.genSaltSync(10);
-    let hash = bcrypt.hashSync(pwd1, hash);
+    let hash = bcrypt.hashSync(pwd1, salt);
 
     user.password = hash;
     user.save((err,user) => {
