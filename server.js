@@ -1019,6 +1019,27 @@ app.get('/showFriendRequest/:id', requireLogin, (req, res) => {
   });
 });
 
+// Accept Friend Request
+app.get('/acceptFriend/:id', requireLogin, (req, res) => {
+  User.findById({_id:req.user._id})
+  .populate('friends.friend')
+  .then((user) => {
+    user.friends.filter((friend) => {
+      if (friend._id = req.params.id) {
+        friend.isFriend = true;
+        user.save()
+        .then(() => {
+          res.send('Wemeje Ubucuti wasabwe!')
+        });
+      } else {
+        console.log(`Ntitwashoboye kubona ubusabe bw'ubucuti!`);
+      }
+    });
+  }).catch((err) => {
+    console.log(err);
+  });
+});
+
 app.get('/logout', (req, res) => {
   User.findById({_id:req.user._id})
   .then((user) => {
