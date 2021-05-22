@@ -1009,6 +1009,16 @@ app.get('/sendFriendRequest/:id', requireLogin, (req, res) => {
   });
 });
 
+app.get('/showFriendRequest/:id', requireLogin, (req, res) => {
+  User.findOne({_id:req.params.id})
+    .then((newFriend) => {
+    res.render('friends/showFriendRequest', {
+      title: 'Wasabwe Ubucuti',
+      newFriend: newFriend
+    })
+  });
+});
+
 app.get('/logout', (req, res) => {
   User.findById({_id:req.user._id})
   .then((user) => {

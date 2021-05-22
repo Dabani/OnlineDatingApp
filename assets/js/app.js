@@ -66,8 +66,8 @@ $(function () {
 $(function () {
   setInterval(function () {
     $('.friend').attr('style', 'color:orange');
-  }, 10);
+  }, 20);
   setInterval(function () {
     $('.friend').attr('style', 'color:white');
-  }, 30);
+  }, 50);
 });
