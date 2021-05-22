@@ -1028,11 +1028,16 @@ app.get('/acceptFriend/:id', requireLogin, (req, res) => {
       if (friend._id = req.params.id) {
         friend.isFriend = true;
         user.save()
-        .then(() => {
-          res.send('Wemeje Ubucuti wasabwe!')
+        .then((friend) => {
+          res.render('friends/friendAccepted', {
+            title: 'Wemeje Ubucuti',
+            friend: friend
+          })
         });
       } else {
-        console.log(`Ntitwashoboye kubona ubusabe bw'ubucuti!`);
+        res.render('friends/404', {
+          title: 'Ubusabe Ntibubonetse'
+        });
       }
     });
   }).catch((err) => {
