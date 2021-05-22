@@ -1029,25 +1029,21 @@ app.get('/acceptFriend/:id', requireLogin, (req, res) => {
   .then((user) => {
     user.friends.filter((friend) => {
       if (friend._id = req.params.id) {
-        if (friend.isFriend) {
-          res.render('friends/alreadyFriend', {
-            title: 'Inshuti isanzwe'
-          })
-        } else {
-          friend.isFriend = true;
-          user.save()
-          .then(() => {
-            User.findById({ _id: req.user._id })
-            .populate('friends.friend')
-            .sort({ date: 'desc' })
-            .then((user) => {
-              res.render('friends/friendAccepted', {
-                title: 'Inshuti Wemeye',
-                userInfo: user
-              })
-            })
-          })
-        }
+        
+        friend.isFriend = true;
+        user.save()
+        .then(() => {
+          User.findById({ _id: req.user._id })
+          .populate('friends.friend')
+          .sort({ date: 'desc' })
+          .then((user) => {
+            res.render('friends/friendAccepted', {
+              title: 'Inshuti Wemeye',
+              userInfo: user
+            });
+          });
+        });
+       
       } else {
         res.render('friends/404', {
           title: 'Ubusabe Ntibubonetse'
@@ -1056,6 +1052,17 @@ app.get('/acceptFriend/:id', requireLogin, (req, res) => {
     });
   }).catch((err) => {
     console.log(err);
+  });
+});
+// Get only friends
+app.get('/friends', requireLogin, (req, res) => {
+  User.findById({_id:req.user._id})
+  .populate('friends.friend')
+  .then((user) => {
+    res.render('friends/friends', {
+      title: 'Inshuti Zanjye',
+      userFriends: user
+    });
   });
 });
 
