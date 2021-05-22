@@ -1028,8 +1028,7 @@ app.get('/acceptFriend/:id', requireLogin, (req, res) => {
   .populate('friends.friend')
   .then((user) => {
     user.friends.filter((friend) => {
-      if (friend._id = req.params.id) {
-        
+      if (friend._id = req.params.id) {        
         friend.isFriend = true;
         user.save()
         .then(() => {
@@ -1042,8 +1041,7 @@ app.get('/acceptFriend/:id', requireLogin, (req, res) => {
               userInfo: user
             });
           });
-        });
-       
+        });       
       } else {
         res.render('friends/404', {
           title: 'Ubusabe Ntibubonetse'
@@ -1062,6 +1060,25 @@ app.get('/friends', requireLogin, (req, res) => {
     res.render('friends/friends', {
       title: 'Inshuti Zanjye',
       userFriends: user
+    });
+  });
+});
+
+// Reject Friend Request
+app.get('/rejectFriend/:id', requireLogin, (req, res) => {
+  User.findById({_id:req.user._id})
+  .populate('friends.friend')
+  .then((user) => {
+    user.friends.filter((friend) => {
+      if (friend._id = req.params.id) {
+        user.friends.pop(friend);
+        user.save()
+        .then(() => {
+          res.send(`Friend request rejected`);
+        })
+      } else {
+        res.send(`Unable to reject friend request`)
+      }
     });
   });
 });
