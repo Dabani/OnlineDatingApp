@@ -159,7 +159,9 @@ app.get('/auth/google/callback', passport.authenticate('google', {
 
 // Display User Profile Page
 app.get('/profile', requireLogin, (req, res) => {
-  User.findById({_id:req.user._id}).then((user) => {
+  User.findById({_id:req.user._id})
+  .populate('friends.friend')
+  .then((user) => {
     if (user) {
       user.online = true;
       user.save((err, user) => {

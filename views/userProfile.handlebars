@@ -22,10 +22,15 @@
               </a>
               {{/if}}
 
+              <a href="/sendFriendRequest/{{oneUser._id}}" class="btn btn-outline-success card-link mb-3" data-bs-toggle="tooltip" data-bs-placement="top" title="Musabe Ubucuti">
+                <i class="bi bi-person-plus"></i>
+              </a>
+
+
               {{#if oneUser.online}}
-              <i class="bi bi-circle-fill text-success card-link" data-bs-toggle="tooltip" data-bs-placement="top" title="Ndi ku rubuga"> Ndahari</i>
+              <i class="bi bi-circle-fill text-success card-link" data-bs-toggle="tooltip" data-bs-placement="top" title="Ndahari"></i>
               {{else}}
-              <i class="bi bi-circle-fill text-danger card-link" data-bs-toggle="tooltip" data-bs-placement="top" title="Sindi ku rubuga"> Simpari</i>
+              <i class="bi bi-circle-fill text-danger card-link" data-bs-toggle="tooltip" data-bs-placement="top" title="Simpari"></i>
               {{/if}}
             </div>
           </div>
