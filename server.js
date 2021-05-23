@@ -395,7 +395,8 @@ app.get('/singles', requireLogin, (req, res) => {
 });
 
 app.get('/userProfile/:id', requireLogin, (req, res) => {
-  User.findById({_id:req.params.id})
+  User.findById({ _id: req.params.id })
+  .populate('friends.friend')
   .then((user) => {
     Smile.findOne({receiver:req.params.id})
     .then((smile) => {

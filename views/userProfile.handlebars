@@ -74,6 +74,33 @@
   </div>
 </div>
 
+<div class="row">
+  <div class="col-sm-8 offset-sm-2 my-4">
+    <div class="bg-dark-trans shad mb-3">
+      <h1 class="text-center">Inshuti</h1>
+      <div class="row px-3">
+        {{#each oneUser.friends}}
+        <div class="col-sm-4 col-md-3 my-3">
+          <div class="card">
+            <img src="{{friend.image}}" class="card-img-top img-fluid">
+            <div class="card-body">
+              <h5 class="card-title text-dark">{{friend.fullname}}</h5>
+              <a href="/userProfile/{{friend._id}}" class="btn btn-primary">Imyirondoro</a>
+            </div>
+          </div>
+        </div>
+        {{else}}
+        <h3 class="text-center text-warning">Nta nshuti zihari!</h3>
+        <div class="col-sm-4 offset-sm-4">
+          <a href="/singles" class="btn btn-primary my-3">Shaka inshuti</a>
+        </div>
+        
+        {{/each}}
+      </div>
+    </div>
+  </div>
+</div>
+
 <div class="row my-4">
   <div class="col-sm-8 offset-sm-2 p-4 bg-dark-trans shad">
     <h2 class="text-center">Inkuru</h2>
