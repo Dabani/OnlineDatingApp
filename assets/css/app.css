@@ -98,6 +98,10 @@ i {
   padding: 0.125em;
 }
 
+.card-img-top {
+  border-radius: 0%;
+}
+
 #profile .card-img-top,
 #singles .card-img-top {
   border-radius: 0;

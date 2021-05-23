@@ -386,7 +386,7 @@ app.get('/singles', requireLogin, (req, res) => {
   .sort({date:'desc'})
   .then((singles) => {
     res.render('singles', {
-      title: 'Inshuti',
+      title: 'Shaka Inshuti',
       singles: singles
     });
   }).catch((err) => {
@@ -1074,10 +1074,18 @@ app.get('/rejectFriend/:id', requireLogin, (req, res) => {
         user.friends.pop(friend);
         user.save()
         .then(() => {
-          res.send(`Friend request rejected`);
-        })
+          User.findOne({_id:req.params.id})
+          .then((friend) => {
+            res.render('friends/rejectFriendRequest', {
+              title: 'Inshuti wahakannye',
+              friend: friend
+            });
+          });
+        });
       } else {
-        res.send(`Unable to reject friend request`)
+        res.render('friends/404', {
+          title: 'Byanze'
+        });
       }
     });
   });
