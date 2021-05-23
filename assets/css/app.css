@@ -28,7 +28,8 @@ td {
   padding: .5em 0;
 }
 
-.bi-pencil-square {
+.bi-pencil-square,
+.clipper {
   cursor: pointer;
 }
 
