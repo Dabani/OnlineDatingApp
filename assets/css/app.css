@@ -59,6 +59,15 @@ i {
   height: 6em;
 }
 
+nav .img-thumbnail {
+  object-fit: cover;
+  overflow: hidden;
+  width: 3em;
+  height: 3em;
+  border: 0px;
+  border-radius: 50%;
+}
+
 @media only screen and (max-width: 600px) {
   .img-thumbnail {
     width: 3em;

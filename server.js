@@ -1028,19 +1028,36 @@ app.get('/acceptFriend/:id', requireLogin, (req, res) => {
   .populate('friends.friend')
   .then((user) => {
     user.friends.filter((friend) => {
-      if (friend._id = req.params.id) {        
+      if (friend._id = req.params.id) {      
         friend.isFriend = true;
         user.save()
         .then(() => {
-          User.findById({ _id: req.user._id })
-          .populate('friends.friend')
-          .sort({ date: 'desc' })
-          .then((user) => {
-            res.render('friends/friendAccepted', {
-              title: 'Inshuti Wemeye',
-              userInfo: user
+          User.findById({_id: req.params.id})
+          .then((requestSender) => {
+            let newFriend = {
+              friend: req.user._id,
+              isFriend: true
+            }
+            requestSender.friends.push(newFriend);
+            requestSender.save()
+            .then(() => {
+              User.findById({ _id: req.user._id })
+              .populate('friends.friend')
+              .sort({ date: 'desc' })
+              .then((user) => {
+                res.render('friends/friendAccepted', {
+                  title: 'Inshuti Wemeye',
+                  userInfo: user
+                });
+              });
+            }).catch((err) => {
+              console.log(err);
             });
+          }).catch((err) => {
+            console.log(err);
           });
+        }).catch((err) => {
+          console.log(err);
         });       
       } else {
         res.render('friends/404', {
