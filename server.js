@@ -1194,6 +1194,13 @@ const io = socket(server);
 
 io.on('connection', (socketio) => {
   console.log('Server is connected to Client');
+
+  // Emit event
+  socketio.emit('newMessage', {
+    title: 'New Message',
+    body: 'Hello World',
+    sender: 'Cecile'
+  });
 });
 
 io.on('disconnection', () => {
