@@ -1193,11 +1193,11 @@ const server = http.createServer(app);
 const io = socket(server);
 
 io.on('connection', (socketio) => {
-  console.log('Connected to Client');
+  console.log('Server is connected to Client');
 });
 
 io.on('disconnection', () => {
-  console.log('Disconnected from Client');
+  console.log('Server is disconnected from Client');
 });
 
 server.listen(port, () => {
