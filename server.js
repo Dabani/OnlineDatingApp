@@ -205,6 +205,22 @@ app.get('/profile', requireLogin, (req, res) => {
   });
 });
 
+// Upload images
+app.post('/uploadPictures', requireLogin, (req, res) => {
+  User.findById({_id: req.user._id})
+  .then((user) => {
+    const newImage = {
+      image: `https://rambagiza-online.s3.us-east-2.amazonaws.com/${req.body.upload}`,
+      date: new Date()
+    }
+    user.pictures.push(newImage);
+    user.save()
+    .then(() => {
+      res.redirect('/profile');
+    });
+  });
+});
+
 app.post('/updateProfile', requireLogin, (req, res) => {
   User.findById({_id:req.user._id})
   .then((user) => {
