@@ -1222,11 +1222,9 @@ const io = socket(server);
 io.on('connection', (socketio) => {
   console.log('Server is connected to Client');
 
-  // Emit event
-  socketio.emit('newMessage', {
-    title: 'New Message',
-    body: 'Hello World',
-    sender: 'Cecile'
+  // Listen to event "ID"
+  socketio.on('ID', (ID) => {
+    console.log('User ID catched: ', ID);
   });
 });
 

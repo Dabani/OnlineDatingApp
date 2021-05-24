@@ -16,8 +16,11 @@
   <div class="container mb-4">
     {{{body}}}
   </div>
-
+  {{#if user}}
+  <input type="hidden" name="ID" id="ID" value="{{user._id}}">
+  {{else}}
   {{> footer}}
+  {{/if}}
 
   <script src="./js/jquery.min.js"></script>
   <script src="./js/popper.min.js"></script>
