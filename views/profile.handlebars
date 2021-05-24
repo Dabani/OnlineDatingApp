@@ -169,6 +169,28 @@
     
   </div>
 </div>
+
+<div class="row">
+  <div class="col-sm-8 offset-sm-2 my-4 bg-dark-trans shad">
+    <div class="row">
+      <h2 class="text-center">Amafoto</h2>
+      {{#each user.pictures}}
+        <div class="col-sm-4">
+          <div class="card my-4">
+            
+            <img src="{{image}}" class="card-img-top img-fluid">
+            
+          </div>
+        </div>
+      {{else}}
+        <h3 class="text-center text-warning">
+          Nta mafoto urohereza ku rubuga!
+        </h3>
+      {{/each}}
+
+    </div>
+  </div>
+</div>
 <script>
   function showUploadForm(){
     document.getElementById('clipper').style.display = 'none';
