@@ -170,18 +170,18 @@
 
     <div class="row">
       {{#each user.pictures}}
-        <div class="col-sm-4">
+        <div class="col-sm">
           <div class="card my-4">            
-            <img src="{{image}}" class="card-img-top img-fluid">
+            <img src="{{image}}" onclick="enlargePicture(this)" class="card-img-top">
             <div class="card-body">
-              <p>
-                <button type="submit" class="btn btn-success me-2">
+              <div>
+                {{!-- <button type="submit" class="btn btn-success me-2">
                   <i class="bi bi-zoom-in" data-bs-toggle="tooltip" data-bs-placement="top" title="Agura iyi ifoto"></i>
-                </button> 
+                </button> --}} 
                 <a href="/deletePicture/{{_id}}" id="delete-picture" class="btn btn-danger me-2">
                   <i class="bi bi-trash" data-bs-toggle="tooltip" data-bs-placement="top" title="Siba iyi foto"></i>
                 </a>
-              </p>
+              </div>
                       
             </div>
           </div>
@@ -198,17 +198,22 @@
 </div>
 
 <script>
-  function showUploadForm(){
+  function showUploadForm() {
     document.getElementById('clipper').style.display = 'none';
     document.getElementById('image-form').style.display = 'block';
   }
 
-  function showSpinnerAndSubmitForm(){
+  function showSpinnerAndSubmitForm() {
     document.getElementById('upload-form').style.display = 'none';
     document.getElementById('spinner').style.display = 'block';
     setTimeout(function(){
       document.getElementById('upload-form').submit();
     },7000);
+  }
+
+  function enlargePicture(picture) {
+    picture.style.width = 'auto';
+    picture.style.height = 'auto';
   }
 </script>
 
