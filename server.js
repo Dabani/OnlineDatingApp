@@ -147,7 +147,7 @@ app.get('/auth/facebook', passport.authenticate('facebook', {
   scope: ['email']
 }));
 app.get('/auth/facebook/callback', passport.authenticate('facebook',{
-  successRedirect: '/profile',
+  successRedirect: '/askMore',
   failureRedirect: '/' 
 }));
 
@@ -155,7 +155,7 @@ app.get('/auth/google', passport.authenticate('google', {
   scope: ['profile']
 }));
 app.get('/auth/google/callback', passport.authenticate('google', {
-  successRedirect: '/profile',
+  successRedirect: '/askMore',
   failureRedirect: '/'
 }));
 
@@ -332,7 +332,7 @@ app.post('/signup', (req, res) => {
 });
 
 app.post('/login', passport.authenticate('local', {
-  successRedirect: '/profile',
+  successRedirect: '/askMore',
   failureRedirect: '/loginErrors'
 }));
 
@@ -341,6 +341,33 @@ app.get('/loginErrors', (req, res) => {
   errors.push({text: 'User not found or Password incorrect!'});
   res.render('home', {
     errors:errors
+  });
+});
+
+// Ask user to finish signup
+app.get('/askMore', requireLogin, (req, res) => {
+  User.findById({_id: req.user._id})
+  .then((user) => {
+    if (!user.gender || !user.age) {
+      res.render('askMore', {
+        title: 'Uzuza Imyirondoro',
+        user: user
+      });
+    } else {
+      res.redirect('/profile');
+    }
+  });
+});
+
+app.post('/askMore', requireLogin, (req, res) => {
+  User.findById({_id: req.user._id})
+  .then((user) => {
+    user.gender = req.body.gender;
+    user.age = req.body.age;
+    user.save()
+    .then(() => {
+      res.redirect('/profile');
+    })
   });
 });
 
