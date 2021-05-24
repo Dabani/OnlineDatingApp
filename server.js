@@ -221,6 +221,21 @@ app.post('/uploadPictures', requireLogin, (req, res) => {
   });
 });
 
+// Delete Picture
+app.get('/deletePicture/:id', requireLogin, (req, res) => {
+  User.findById({_id: req.user._id})
+  .then((user) => {
+    user.pictures.id(req.params.id).remove()
+    user.save((err) => {
+      if (err) {
+        throw err;
+      } else {
+        res.redirect('/profile')
+      }
+    });
+  });
+});
+
 app.post('/updateProfile', requireLogin, (req, res) => {
   User.findById({_id:req.user._id})
   .then((user) => {
