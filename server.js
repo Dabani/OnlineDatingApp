@@ -11,6 +11,8 @@ const flash = require('connect-flash');
 const bcrypt = require('bcryptjs');
 const formidable = require('formidable');
 const moment = require('moment');
+const socket = require('socket.io');
+const http = require('http');
 
 // Load models
 const Message = require('./models/message');
@@ -1186,6 +1188,18 @@ app.post('/contactUs', (req, res) => {
   });
 });
 
-app.listen(port, () => {
+// Connect socket.io
+const server = http.createServer(app);
+const io = socket(server);
+
+io.on('connection', (socketio) => {
+  console.log('Connected to Client');
+});
+
+io.on('disconnection', () => {
+  console.log('Disconnected from Client');
+});
+
+server.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });
