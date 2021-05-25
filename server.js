@@ -1224,7 +1224,95 @@ io.on('connection', (socketio) => {
 
   // Listen to event "ID"
   socketio.on('ID', (ID) => {
-    console.log('User ID catched: ', ID);
+    //console.log('User ID catched: ', ID);
+    User.findOne({_id:ID.ID})
+    .then((currentUser) => {
+      User.findOne({email:'admin@rambagiza.com'})
+      .then((admin) => {
+        if (admin && currentUser) {
+          Chat.findOne({sender:currentUser._id, receiver:admin._id})
+          .populate('sender')
+          .populate('receiver')
+          .populate('chats.senderName')
+          .populate('chats.receiverName')
+          .then((chat) => {
+            if (chat) {
+              if (chat.receiverRead === false) {
+                // Stopping chat
+                chat.receiverRead = true;
+                chat.senderRead = true;
+                chat.save((err, chat) => {
+                  if (err) {
+                    throw err;
+                  }
+                  if (chat) {
+                    console.log('Chat has been stopped by Admin');
+                  }
+                })
+              }
+            } else {
+              Chat.findOne({ sender: admin._id, receiver: currentUser._id })
+              .populate('sender')
+              .populate('receiver')
+              .populate('chats.senderName')
+              .populate('chats.receiverName')
+              .then((chat) => {
+                if (chat) {
+                  // Do not reply - Stop the conversation
+                  if (chat.senderRead === false) {
+                    chat.receiverRead = true;
+                    chat.senderRead = true;
+                    chat.save((err, chat) => {
+                      if (err) {
+                        throw err;
+                      }
+                      if (chat) {
+                        console.log('Admin received message, but chat has stopped')
+                      }
+                    })
+                  }
+                } else {
+                  const chat = {
+                    sender: admin._id,
+                    receiver: currentUser._id,
+                    senderRead: true
+                  }
+                  new Chat(chat).save((err, chat) => {
+                    if (err) {
+                      throw err;
+                    }
+                    if (chat) {
+                      const newChat = {
+                        senderName: admin._id,
+                        senderMessage: ('Welcome to Rambagiza.com, we are excited to see you here!'),
+                        receiverName: currentUser._id,
+                        senderRead: true
+                      }
+                      chat.chats.push(newChat);
+                      chat.save((err, chat) => {
+                        if (err) {
+                          throw err;
+                        }
+                        if (chat) {
+                          Chat.findOne({ _id: chat._id })
+                          .populate('sender')
+                          .populate('receiver')
+                          .populate('chats.senderName')
+                          .populate('chats.receiverName')
+                          .sort({ date: 'desc' })
+                        }
+                      })
+                    }
+                  });
+                }
+              })
+            }
+          })
+        } else {
+          console.log('Unable to find Admin from database');
+        }
+      })
+    })
   });
 });
 
