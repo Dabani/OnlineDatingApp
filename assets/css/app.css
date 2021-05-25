@@ -176,3 +176,8 @@ nav .img-thumbnail {
   color: #fff;
   text-decoration: none;
 }
+
+.about {
+  text-align: justify;
+  text-justify: inter-word;
+}
