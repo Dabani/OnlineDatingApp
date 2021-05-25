@@ -1305,14 +1305,22 @@ io.on('connection', (socketio) => {
                     }
                   });
                 }
+              }).catch((err) => {
+                console.log(err);
               })
             }
-          })
+          }).catch((err) => {
+            console.log(err);
+          });
         } else {
           console.log('Unable to find Admin from database');
         }
-      })
-    })
+      }).catch((err) => {
+        console.log(err);
+      });
+    }).catch((err) => {
+      console.log(err);
+    });
   });
 });
 
