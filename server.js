@@ -143,6 +143,18 @@ app.get('/contact', ensureGuest, (req, res) => {
   });
 });
 
+app.get('/inbox', (req, res) => {
+  Message.find({})
+  .then((messages) => {
+    res.render('inbox', {
+      title: 'Ubutumwa',
+      messages: messages
+    });
+  }).catch((err) => {
+    console.log(err);
+  });
+});
+
 app.get('/auth/facebook', passport.authenticate('facebook', {
   scope: ['email']
 }));
