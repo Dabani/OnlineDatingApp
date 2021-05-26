@@ -32,7 +32,7 @@
                   },40)
                 </script>
               {{/if}}
-              <small>{{getLastMoment date 'hour'}}</small>
+              <small>{{formatTime date 'DD/MM/YYYY - HH:mm:ss'}}</small>
             </div>
             <div class="col-2 float-right text-end">
               <a href="/deleteChat/{{_id}}" class="text-danger">
@@ -78,7 +78,7 @@
                   },40)
                 </script>
               {{/if}}
-              <small>{{getLastMoment date 'hour'}}</small>
+              <small>{{formatTime date 'DD/MM/YYYY - HH:mm:ss'}}</small>
             </div>
             <div class="col-2 float-right text-end">
               <a href="/deleteChat/{{_id}}" class="text-danger">

@@ -19,7 +19,7 @@
         <div class="d-flex mb-3">
           <div class="flex-grow-1 text-end p-2 dialog receiver">
             <p><strong>{{receiverMessage}}</strong></p>
-            <small>{{getLastMoment date 'hour'}}</small>
+            <small>{{formatTime date 'DD/MM/YYYY - HH:mm:ss'}}</small>
           </div>
           <div class="flex-shrink-1">
             <a href="/userProfile/{{receiverName._id}}">
@@ -38,7 +38,7 @@
           </div>
           <div class="flex-grow-1 ms-3 ml-4 p-2 dialog sender">
             <p><strong>{{senderMessage}}</strong></p>
-            <small>{{getLastMoment date 'hour'}}</small>
+            <small>{{formatTime date 'DD/MM/YYYY - HH:mm:ss'}}</small>
           </div>
         </div>
       {{/if}}
@@ -51,4 +51,4 @@
       <button type="submit" class="btn btn-primary my-3">Ohereza</button>
     </form>
   </div>
-</div>  
+</div>

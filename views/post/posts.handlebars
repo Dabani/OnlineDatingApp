@@ -3,7 +3,7 @@
     {{#each posts}}
       <div class="d-flex bg-dark-trans shad p-3 my-4">
         <div class="flex-shrink-0">
-          <img src="{{postUser.image}}" class="rounded-circle img-thumbnail">
+          <a href="/userProfile/{{postUser._id}}"><img src="{{postUser.image}}" class="rounded-circle img-thumbnail"></a>
         </div>
         <div class="flex-grow-1 ms-3">
           <h3>{{title}} <i class="bi bi-globe"></i></h3>
